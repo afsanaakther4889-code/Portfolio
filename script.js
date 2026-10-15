@@ -309,7 +309,104 @@
   })();
 
   /* ---------------------------------------------------------
-     9. 页脚年份
+     10. 图片灯箱
+     作品详情页点图看大图；环形轮播的「看大图」按钮也走 window.__openLightbox。
+     --------------------------------------------------------- */
+  (function lightbox() {
+    var gallery = $$('.work-gallery img');
+    var hasCarousel = !!document.querySelector('[data-carousel]');
+    if (!gallery.length && !hasCarousel) return;
+
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', '大图预览');
+    box.hidden = true;
+    box.innerHTML =
+      '<button class="lightbox__close" type="button">关闭 (esc)</button>' +
+      '<img alt="">' +
+      '<p class="lightbox__count mono"></p>';
+    document.body.appendChild(box);
+
+    var img = $('img', box);
+    var count = $('.lightbox__count', box);
+    var closeBtn = $('.lightbox__close', box);
+    var lastFocus = null;
+
+    // 图集来源：静态图集页用全部 <img>，轮播页只按传入的单张打开
+    var list = gallery.map(function (n) {
+      return { src: n.currentSrc || n.src, alt: n.alt || '' };
+    });
+    var index = 0;
+
+    function show(i) {
+      if (!list.length) return;
+      index = ((i % list.length) + list.length) % list.length;
+      var entry = list[index];
+      img.src = entry.src;
+      img.alt = entry.alt;
+      if (count) count.textContent = (index + 1) + ' / ' + list.length;
+    }
+
+    /** 打开灯箱。src 命中图集则定位过去，否则当作单张图显示。 */
+    function open(src, alt) {
+      lastFocus = document.activeElement;
+
+      var found = -1;
+      if (src) {
+        var file = String(src).split('/').pop();
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].src.indexOf(file) !== -1) { found = i; break; }
+        }
+      }
+
+      if (found === -1) {
+        // 不在图集里：只显示这一张，不提供左右切换
+        list = [{ src: src, alt: alt || '' }];
+        index = 0;
+        show(0);
+      } else {
+        show(found);
+      }
+
+      box.hidden = false;
+      document.body.classList.add('is-locked');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function close() {
+      box.hidden = true;
+      img.removeAttribute('src');
+      document.body.classList.remove('is-locked');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    // 暴露给 work-carousel.js
+    window.__openLightbox = open;
+
+    gallery.forEach(function (node, i) {
+      node.style.cursor = 'zoom-in';
+      node.addEventListener('click', function () {
+        open(node.currentSrc || node.src, node.alt);
+        show(i);
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    box.addEventListener('click', function (e) {
+      if (e.target === box) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') show(index + 1);
+      else if (e.key === 'ArrowLeft') show(index - 1);
+    });
+  })();
+
+  /* ---------------------------------------------------------
+     11. 页脚年份
      --------------------------------------------------------- */
   (function year() {
     var el = $('#year');
@@ -317,15 +414,14 @@
   })();
 
   /* ---------------------------------------------------------
-     10. 占位内容提醒（上线前删掉这一段即可）
+     12. 占位内容提醒（全部替换完成后可删掉这一段）
      --------------------------------------------------------- */
   (function placeholderNotice() {
     var flagged = $$('[data-placeholder="true"]');
     if (!flagged.length) return;
     // eslint-disable-next-line no-console
     console.info(
-      '[作品集] 还有 ' + flagged.length + ' 处占位内容待替换：邮箱、城市、项目文案。' +
-      '搜索 data-placeholder 和「占位」即可定位。'
+      '[作品集] 还有 ' + flagged.length + ' 处占位内容待替换（搜索 data-placeholder）。'
     );
   })();
 
