@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="is-design">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>程鑫涛 — 工业设计师</title>
+<meta name="description" content="程鑫涛，工业设计师。从结构、工艺到量产落地，把模糊的想法变成可以握在手里的产品。">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="程鑫涛 — 工业设计师">
+<meta property="og:description" content="从结构、工艺到量产落地，把模糊的想法变成可以握在手里的产品。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' fill='%23000'/%3E%3Cpath d='M36 8.329V0H27.67v2.395H8.33V0H0v8.329h2.395V27.67H0V36h8.329v-2.395H27.67V36H36v-8.329h-2.395V22.165H36v-8.33h-8.329v2.395h-5.506v-2.395h-8.33v8.33h8.33v-2.395h5.506v2.395h2.395v5.505h-2.395v2.395H8.33v-2.395H5.935V8.33H8.33V5.935H27.67V8.33H36Z' fill='%235B5BFF'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<!-- ============ 预加载 ============ -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__inner">
+    <svg class="mark" viewBox="0 0 50 55" role="img" aria-label="程鑫涛 标志">
+      <rect x="6.5" y="0" width="37" height="4"></rect>
+      <rect x="6.5" y="51" width="37" height="4"></rect>
+      <path d="M5 7h27v3 10h-3V10H8v10H5V7Z"></path>
+      <path d="M5 35h3v10h21V35h3v13H5v-3-10Z"></path>
+      <g class="mark__spark">
+        <rect x="8" y="20" width="3" height="3"></rect>
+        <rect x="11" y="23" width="3" height="3"></rect>
+        <rect x="14" y="26" width="3" height="3"></rect>
+        <rect x="11" y="29" width="3" height="3"></rect>
+        <rect x="8" y="32" width="3" height="3"></rect>
+        <rect x="29" y="20" width="3" height="3"></rect>
+        <rect x="26" y="23" width="3" height="3"></rect>
+        <rect x="23" y="26" width="3" height="3"></rect>
+        <rect x="26" y="29" width="3" height="3"></rect>
+        <rect x="29" y="32" width="3" height="3"></rect>
+      </g>
+    </svg>
+    <em class="preloader__count mono"><span id="loadCount">0%</span></em>
+  </div>
+</div>
+
+<!-- ============ 页头 ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="grid site-header__grid">
+    <div class="site-header__brand">
+      <a href="#top" aria-label="回到首页">
+        <svg viewBox="0 0 36 36" width="24" height="24" aria-hidden="true">
+          <path d="M36 8.329V0H27.67v2.395H8.33V0H0v8.329h2.395V27.67H0V36h8.329v-2.395H27.67V36H36v-8.329h-2.395V22.165H36v-8.33h-8.329v2.395h-5.506v-2.395h-8.33v8.33h8.33v-2.395h5.506v2.395h2.395v5.505h-2.395v2.395H8.33v-2.395H5.935V8.33H8.33V5.935H27.67V8.33H36Z"></path>
+        </svg>
+        <span class="mono site-header__name">程鑫涛</span>
+      </a>
+    </div>
+
+    <nav class="site-header__nav" aria-label="主导航">
+      <a href="#work">作品</a>
+      <a href="#services">能力</a>
+      <a href="#about">关于</a>
+    </nav>
+
+    <div class="site-header__cta">
+      <button type="button" class="btn btn--outline" data-contact-open>聊一聊</button>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteHeader" data-nav-toggle>
+        <span class="sr-only">展开菜单</span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ 首屏 ============ -->
+  <section class="hero" id="top">
+    <div class="grid">
+      <p class="hero__eyebrow mono reveal">工业设计师 · 结构 &amp; 量产落地</p>
+      <h1 class="hero__title">
+        <span class="reveal-line"><span>把想法</span></span>
+        <span class="reveal-line"><span>做成<em>握得住</em>的东西</span></span>
+      </h1>
+      <p class="hero__lede reveal">
+        我是程鑫涛。从草图、结构到工艺与量产，我把一个还没有形状的念头，
+        一路推到能被人真正拿在手里的产品。
+      </p>
+      <div class="hero__actions reveal">
+        <a class="btn btn--solid" href="#work">查看作品</a>
+        <a class="btn btn--outline" href="#contact">合作方式</a>
+      </div>
+    </div>
+
+    <!-- MicroSlats 交互色带：源自 React Bits 的 <MicroSlats />，已移植为无依赖原生 WebGL2 -->
+    <div class="hero__field"
+         data-micro-slats
+         aria-hidden="true"
+         data-slats-preset="swell"
+         data-slats-color="#5B5BFF"
+         data-slats-glint="#ffffff"
+         data-slats-background="transparent"
+         data-slats-width="9"
+         data-slats-height="26"
+         data-slats-gap="3"
+         data-slats-roundness="0.85"
+         data-slats-speed="0.6"
+         data-slats-scale="1.6"
+         data-slats-chop="0.5"
+         data-slats-glint-strength="0.8"
+         data-slats-contrast="1.3"
+         data-slats-perspective="0.72"
+         data-slats-fog="0.5"
+         data-slats-cursor-strength="1.1"
+         data-slats-cursor-size="46"
+         data-slats-swirl="0.18"
+         data-slats-trail="1.6"
+         data-slats-lean="0.5"></div>
+
+    <div class="grid hero__stats">
+      <div class="stat reveal">
+        <span class="stat__num mono"><em data-count="8">0</em>+</span>
+        <span class="stat__label mono">年产品设计经验</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num mono"><em data-count="40">0</em>+</span>
+        <span class="stat__label mono">落地量产项目</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num mono"><em data-count="12">0</em></span>
+        <span class="stat__label mono">合作过的品牌</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat__num mono"><em data-count="100">0</em>%</span>
+        <span class="stat__label mono">交付到图纸与实物</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 痛点 ============ -->
+  <section class="section section--problems" id="problems">
+    <div class="grid">
+      <h2 class="section__title reveal">
+        大多数产品<br>不是差在创意<br>而是差在<em>落地</em>
+      </h2>
+
+      <ul class="problems">
+        <li class="problem reveal">
+          <span class="problem__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M6 42V14l12-8 12 8v28" fill="none" stroke-width="3"/><path d="M30 42V22h12v20" fill="none" stroke-width="3"/></svg>
+          </span>
+          <h3>效果图很好看，做出来不是那样</h3>
+          <p>渲染时可以忽略的圆角、缝隙、壁厚，到了模具和注塑环节全都会变成问题。</p>
+        </li>
+        <li class="problem reveal">
+          <span class="problem__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke-width="3"/><path d="M24 12v12l8 6" fill="none" stroke-width="3"/></svg>
+          </span>
+          <h3>反复改稿，时间全耗在来回确认</h3>
+          <p>需求没有翻译成结构语言，每次评审都在推翻上一轮，工期被无限拉长。</p>
+        </li>
+        <li class="problem reveal">
+          <span class="problem__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M8 40 24 8l16 32" fill="none" stroke-width="3"/><path d="M16 28h16" fill="none" stroke-width="3"/></svg>
+          </span>
+          <h3>结构一改，成本就失控</h3>
+          <p>零件数量、装配工序、模具结构调整，每一项都在悄悄推高单件成本。</p>
+        </li>
+        <li class="problem reveal">
+          <span class="problem__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="2" fill="none" stroke-width="3"/><path d="M8 20h32M20 20v20" fill="none" stroke-width="3"/></svg>
+          </span>
+          <h3>图纸交付了，工厂还是做不出来</h3>
+          <p>公差、拔模、装配顺序没有交代清楚，问题留到试产才爆发。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 宣言跑马灯 ============ -->
+  <section class="marquee-band" aria-label="设计原则">
+    <div class="marquee" data-marquee>
+      <div class="marquee__track">
+        <span>结构先行</span><span aria-hidden="true">·</span>
+        <span>工艺可造</span><span aria-hidden="true">·</span>
+        <span>成本可控</span><span aria-hidden="true">·</span>
+        <span>细节诚实</span><span aria-hidden="true">·</span>
+        <span>能量产才算设计完成</span><span aria-hidden="true">·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 能力 ============ -->
+  <section class="section" id="services">
+    <div class="grid">
+      <header class="section__head">
+        <p class="mono section__eyebrow reveal">能力 / SERVICES</p>
+        <h2 class="section__title reveal">我能<em>接住</em>的环节</h2>
+      </header>
+
+      <ol class="services">
+        <li class="service reveal">
+          <span class="service__idx mono">01</span>
+          <h3>产品定义与用户研究</h3>
+          <p>把模糊的需求拆成使用场景、人群与功能优先级，先想清楚为谁解决什么问题。</p>
+        </li>
+        <li class="service reveal">
+          <span class="service__idx mono">02</span>
+          <h3>工业设计与形态推敲</h3>
+          <p>草图、CMF、人机尺度与形态语言，让产品既符合品牌，也经得起近距离端详。</p>
+        </li>
+        <li class="service reveal">
+          <span class="service__idx mono">03</span>
+          <h3>结构与可制造性</h3>
+          <p>拆件、壁厚、脱模、装配与公差链，在开模之前把风险清干净。</p>
+        </li>
+        <li class="service reveal">
+          <span class="service__idx mono">04</span>
+          <h3>手板与试产跟进</h3>
+          <p>3D 打印、CNC、硅胶复模到试产，跟到工厂现场，把问题留在样板阶段解决。</p>
+        </li>
+        <li class="service reveal">
+          <span class="service__idx mono">05</span>
+          <h3>渲染与视觉表达</h3>
+          <p>keyShot 渲染、爆炸图与使用场景图，让方案在评审桌上就能被看懂。</p>
+        </li>
+        <li class="service reveal">
+          <span class="service__idx mono">06</span>
+          <h3>包装与量产文档</h3>
+          <p>包装结构、装配说明书与量产图纸，交付给供应链的是完整可执行的资料。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 作品 ============ -->
+  <section class="section" id="work">
+    <div class="grid">
+      <header class="section__head">
+        <p class="mono section__eyebrow reveal">作品 / SELECTED WORK</p>
+        <h2 class="section__title reveal">精选<em>项目</em></h2>
+        <p class="section__note mono reveal">框架已就位 · 待补充真实项目</p>
+      </header>
+
+      <div class="work">
+
+        <!-- 项目 1 ｜ 复制这一段即可新增项目，改 href 指向项目详情页 -->
+        <article class="project reveal">
+          <a class="project__link" href="#" aria-label="项目名称占位，待替换">
+            <div class="project__media" aria-hidden="true">
+              <span class="project__ph mono">项目主图</span>
+            </div>
+            <div class="project__body">
+              <p class="project__meta mono"><span>2024</span><span>消费电子</span></p>
+              <h3 class="project__title">项目名称占位</h3>
+              <p class="project__desc">一句话说明：解决了什么问题、你在其中负责哪一段、最终结果如何。</p>
+              <ul class="project__tags mono">
+                <li>结构设计</li><li>CMF</li><li>量产跟进</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project reveal">
+          <a class="project__link" href="#" aria-label="项目名称占位，待替换">
+            <div class="project__media" aria-hidden="true">
+              <span class="project__ph mono">项目主图</span>
+            </div>
+            <div class="project__body">
+              <p class="project__meta mono"><span>2023</span><span>家居产品</span></p>
+              <h3 class="project__title">项目名称占位</h3>
+              <p class="project__desc">一句话说明：解决了什么问题、你在其中负责哪一段、最终结果如何。</p>
+              <ul class="project__tags mono">
+                <li>形态推敲</li><li>手板验证</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project reveal">
+          <a class="project__link" href="#" aria-label="项目名称占位，待替换">
+            <div class="project__media" aria-hidden="true">
+              <span class="project__ph mono">项目主图</span>
+            </div>
+            <div class="project__body">
+              <p class="project__meta mono"><span>2023</span><span>工具器械</span></p>
+              <h3 class="project__title">项目名称占位</h3>
+              <p class="project__desc">一句话说明：解决了什么问题、你在其中负责哪一段、最终结果如何。</p>
+              <ul class="project__tags mono">
+                <li>产品定义</li><li>结构设计</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project reveal">
+          <a class="project__link" href="#" aria-label="项目名称占位，待替换">
+            <div class="project__media" aria-hidden="true">
+              <span class="project__ph mono">项目主图</span>
+            </div>
+            <div class="project__body">
+              <p class="project__meta mono"><span>2022</span><span>概念设计</span></p>
+              <h3 class="project__title">项目名称占位</h3>
+              <p class="project__desc">一句话说明：解决了什么问题、你在其中负责哪一段、最终结果如何。</p>
+              <ul class="project__tags mono">
+                <li>概念探索</li><li>渲染表达</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 纯色强调版块 ============ -->
+  <section class="accent-band" id="engagement">
+    <div class="grid accent-band__grid">
+      <h2 class="accent-band__title">
+        设计<em>合作</em><br>方式
+      </h2>
+      <div class="accent-band__body">
+        <p class="accent-band__lede">
+          按项目或按月合作，报价取决于零件数量、结构复杂度与是否需要跟到量产。
+          聊完之后我会给你一份明确的范围建议，而不是一句“看情况”。
+        </p>
+        <dl class="accent-band__specs">
+          <div><dt class="mono">起步方式</dt><dd>一次免费需求沟通</dd></div>
+          <div><dt class="mono">常见周期</dt><dd>2 – 8 周 / 阶段</dd></div>
+          <div><dt class="mono">交付物</dt><dd>图纸 · 渲染 · 手板 · 量产资料</dd></div>
+        </dl>
+        <a class="btn btn--invert" href="#contact">开始沟通</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 关于 ============ -->
+  <section class="section" id="about">
+    <div class="grid about">
+      <div class="about__lead">
+        <p class="mono section__eyebrow reveal">关于 / ABOUT</p>
+        <h2 class="about__title reveal">
+          <em>8 年</em>产品设计<br>从草图到产线
+        </h2>
+      </div>
+      <div class="about__body">
+        <p class="reveal">
+          我是程鑫涛，工业设计师。做过消费电子、家居产品与工具器械，
+          也待过工厂、跟过试产、被模具师傅当面指出过画得不对的地方 ——
+          这些经历让我更愿意在设计阶段就把“能不能做出来”想透。
+        </p>
+        <p class="reveal">
+          我不太喜欢把设计停留在效果图里。一个方案能不能量产、成本是否合理、
+          装配线上工人好不好操作，这些才是我判断设计是否成立的标准。
+        </p>
+        <ul class="about__facts">
+          <li class="reveal"><span class="mono">擅长</span>结构设计 · CMF · 可制造性评估</li>
+          <li class="reveal"><span class="mono">工具</span>SolidWorks · Rhino · KeyShot · AI 辅助设计</li>
+          <li class="reveal"><span class="mono">领域</span>消费电子 · 家居 · 工具器械</li>
+          <li class="reveal"><span class="mono">状态</span>可承接新项目</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 联系 ============ -->
+  <section class="section section--contact" id="contact">
+    <div class="grid contact">
+      <div class="contact__intro">
+        <p class="mono section__eyebrow reveal">联系 / CONTACT</p>
+        <h2 class="contact__title reveal">准备好了<br>就<em>聊聊</em></h2>
+        <p class="reveal">
+          把你的产品想法、参考图或现在卡住的地方发给我，
+          我会在一天内回复。
+        </p>
+
+        <ul class="contact__list">
+          <li class="reveal">
+            <span class="mono">微信 / 电话</span>
+            <a href="tel:+8615571570741">15571570741</a>
+          </li>
+          <li class="reveal">
+            <span class="mono">邮箱</span>
+            <a href="mailto:hello@example.com" data-placeholder="true">hello@example.com</a>
+            <!-- TODO: 把上面的邮箱换成你的真实邮箱（两处：href 和文字） -->
+          </li>
+          <li class="reveal">
+            <span class="mono">所在地</span>
+            <span>中国</span>
+            <!-- TODO: 换成你所在的城市，例如 深圳 / 上海 -->
+          </li>
+        </ul>
+      </div>
+
+      <form class="contact__form" id="contactForm" novalidate>
+        <p class="form__legend mono">留下你的需求</p>
+
+        <div class="field">
+          <label class="mono" for="f-type">合作类型</label>
+          <div class="segmented" role="radiogroup" aria-label="合作类型">
+            <label><input type="radio" name="type" value="产品设计" checked><span>产品设计</span></label>
+            <label><input type="radio" name="type" value="结构优化"><span>结构优化</span></label>
+            <label><input type="radio" name="type" value="量产跟进"><span>量产跟进</span></label>
+            <label><input type="radio" name="type" value="其他"><span>其他</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="mono" for="f-name">称呼 <span aria-hidden="true">*</span></label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="怎么称呼你">
+        </div>
+
+        <div class="field">
+          <label class="mono" for="f-contact">联系方式 <span aria-hidden="true">*</span></label>
+          <input id="f-contact" name="contact" type="text" required autocomplete="email" placeholder="邮箱 / 微信 / 电话">
+        </div>
+
+        <div class="field">
+          <label class="mono" for="f-msg">需求说明 <span aria-hidden="true">*</span></label>
+          <textarea id="f-msg" name="message" rows="4" required placeholder="想做什么产品，目前进展到哪一步"></textarea>
+        </div>
+
+        <button class="btn btn--solid btn--block" type="submit">发送需求</button>
+        <p class="form__status mono" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ 页脚 ============ -->
+<footer class="site-footer">
+  <div class="grid site-footer__grid">
+    <p class="mono">© <span id="year">2026</span> 程鑫涛 · 工业设计师</p>
+    <nav class="site-footer__nav mono" aria-label="页脚导航">
+      <a href="#work">作品</a>
+      <a href="#services">能力</a>
+      <a href="#about">关于</a>
+      <a href="#contact">联系</a>
+      <a href="tel:+8615571570741">15571570741</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="page-progress" aria-hidden="true"><span id="pageProgress"></span></div>
+
+<!-- 移动端联系浮层 -->
+<div class="contact-panel" id="contactPanel" hidden>
+  <div class="contact-panel__inner">
+    <button class="contact-panel__close mono" type="button" data-contact-close>关闭 (esc)</button>
+    <p class="mono contact-panel__eyebrow">联系 / CONTACT</p>
+    <h2 class="contact-panel__title">准备好了就<em>聊聊</em></h2>
+    <ul class="contact-panel__list">
+      <li><span class="mono">微信 / 电话</span><a href="tel:+8615571570741">15571570741</a></li>
+      <li><span class="mono">邮箱</span><a href="mailto:hello@example.com">hello@example.com</a></li>
+    </ul>
+    <a class="btn btn--solid btn--block" href="#contact" data-contact-close>填写需求表单</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="micro-slats.js"></script>
+</body>
+</html>
