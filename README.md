@@ -3,7 +3,14 @@
 一个纯静态单页作品集，视觉风格参照 [grilledpixels.com](https://www.grilledpixels.com/ecommerce) 的设计语言重建：
 纯黑底、大号流体字阶、等宽体标签、自定义缓动曲线、12 列栅格、整屏强调色版块。
 
-首屏的动态色带来自 React Bits 的 `<MicroSlats />`，已移植为**无依赖的原生 WebGL2** 实现。
+首页有 3 个真实项目，每个项目点进去是独立详情页，图片以**环形轮播**呈现。
+
+两个 React Bits 组件已移植为无依赖原生实现：
+
+| 组件 | 用途 | 移植说明 |
+|---|---|---|
+| `<MicroSlats />` | 首屏动态色带 | React + `ogl` → 原生 WebGL2 |
+| `<CircularCarousel />` | 作品图片环形轮播 | React → 原生 DOM + CSS 3D |
 
 **无构建步骤、无依赖、无框架。** 双击 `index.html` 就能打开。
 
@@ -15,74 +22,81 @@
 
 ```
 portfolio/
-├── index.html          页面结构与全部文案
-├── styles.css          全部样式（设计令牌集中在 :root）
-├── script.js           预加载、滚动揭示、导航、表单校验
-├── micro-slats.js      首屏动态色带（MicroSlats 原生 WebGL2 移植版）
-├── preview-mobile.png  移动端效果预览
-├── README.md           本文件
-└── tools/              开发期自检脚本（不影响上线，可整目录删除）
-    ├── cdp.py          极简 CDP 客户端（仅标准库）
-    ├── smoke.py        交互自检：26 项
-    ├── verify_slats.py 色带专项自检：渲染 / 动画 / 交互
-    └── shot.py         按指定视口截图
+├── index.html               首页：作品卡片、能力、关于、联系
+├── work-01.html             「蒜乐扒」儿童手摇剥蒜器
+├── work-02.html             NetAce 网球智能陪练机器人
+├── work-03.html             TESSAN 桌面多功能插座
+├── styles.css               全站样式（设计令牌集中在 :root）
+├── script.js                预加载、滚动揭示、导航、表单、图片灯箱
+├── micro-slats.js           首屏色带（原生 WebGL2）
+├── circular-carousel.js     环形轮播（原生 DOM + CSS 3D）
+├── circular-carousel.css    环形轮播样式
+├── work-carousel.js         详情页接入：把图集变成环形轮播
+├── images/                  17 张作品图（WebP，共约 1.2 MB）
+├── preview-mobile.png       移动端效果预览
+├── README.md                本文件
+└── tools/                   开发期脚本（部署时可整目录删掉）
+    ├── cdp.py               极简 CDP 客户端（仅标准库）
+    ├── deploy.mjs           通过 GitHub API 部署
+    ├── optimize_works.py    原始作品图 → WebP
+    ├── smoke.py             首页交互自检：26 项
+    ├── verify_slats.py      色带自检：渲染 / 动画 / 交互
+    ├── verify_carousel.py   轮播自检：四个 preset / 点击 / 溢出
+    ├── verify_work_pages.py 三个详情页自检
+    └── shot.py              按指定视口截图
 ```
 
 `tools/` 里的脚本只在本地开发时用，部署时不必上传。
 它们需要有 Edge 浏览器；Python 用工作区自带的那份即可。
 
 ```powershell
-# 交互自检（导航、浮层、表单、横向溢出、锚点等 26 项）
-python tools/smoke.py "file:///C:/你的路径/portfolio/index.html" 1440 900
-python tools/smoke.py "file:///C:/你的路径/portfolio/index.html" 390 844
+$base = "file:///C:/你的路径/portfolio/"
+
+# 首页交互自检（导航、浮层、表单、横向溢出、锚点等 26 项）
+python tools/smoke.py "$($base)index.html" 1440 900
+python tools/smoke.py "$($base)index.html" 390 844
 
 # 色带自检（着色器报错、实际像素、动画推进、指针交互）
-python tools/verify_slats.py "file:///C:/你的路径/portfolio/index.html" 1440 900
+python tools/verify_slats.py "$($base)index.html" 1440 900
+
+# 三个详情页的环形轮播自检
+python tools/verify_work_pages.py $base 1440 900
 
 # 截图核对版式；末尾加 motion 保留动画
-python tools/shot.py "file:///C:/你的路径/portfolio/index.html" 1440 950 hero.png motion
+python tools/shot.py "$($base)work-01.html" 1440 1500 shot.png motion
 ```
 
 ---
 
-## 上线前必须替换的 4 处
+## 还需要你确认的 3 处
 
-在编辑器里全局搜索 `占位` 和 `example.com`，一共这些位置：
-
-| # | 位置 | 现在的内容 | 要改成 |
+| # | 位置 | 现在的内容 | 说明 |
 |---|---|---|---|
-| 1 | `index.html` 联系版块 | `hello@example.com`（`href` 和文字各一处） | 你的真实邮箱 |
-| 2 | `index.html` 联系版块 | `中国` | 你所在的城市 |
-| 3 | `index.html` 作品版块 | 4 个「项目名称占位」 | 真实项目 |
-| 4 | `index.html` 首屏数据 | 8 年 / 40+ / 12 / 100% | 你的真实数字 |
+| 1 | `index.html` 联系版块 + 联系浮层 | `hello@example.com` | **必改**：换成你的真实邮箱，或删掉这一整项。搜索 `data-placeholder` 可定位 |
+| 2 | `index.html` 首屏数据带 | 8 年 / 40+ / 12 / 100% | 我按行业常见值填的，**不是你说的数字**，请改成真实的 |
+| 3 | `index.html` 关于版块 | 工具：SolidWorks · Rhino · KeyShot | 我按工业设计常见工具填的，请改成你实际用的 |
 
-微信和电话已经填好：**15571570741**（`index.html` 里搜 `15571570741`）。
+已经填好的：所在地 **湖南 · 长沙**、电话/微信 **15571570741**、3 个作品及其全部图集。
 
-### 换掉项目卡片
+### 新增作品
 
-作品版块里每个项目是一段 `<article class="project reveal">…</article>`。
-**复制整段、改文案**就是新增一个项目，位置会自动排进栅格。
+**首页加卡片**：复制 `index.html` 里任意一段 `<article class="project reveal">` 改文案即可，
+`href` 指向新的详情页。
 
-加真实项目主图：把图片放进 `portfolio/` 目录，然后把
+**加详情页**：复制一个现成的 `work-0N.html`，改标题、参数栏和 `<ul class="gallery-source">`
+里的图片数据即可。图片放 `images/`，然后用压缩脚本批量转 WebP：
 
-```html
-<div class="project__media" aria-hidden="true">
-  <span class="project__ph mono">项目主图</span>
-</div>
+```powershell
+# 把 D:\mj\作品图 的原始 PNG 压成网页用 WebP（改脚本顶部的 SRC 路径）
+python tools/optimize_works.py
 ```
 
-换成
+详情页的图片列表是数据驱动的，每一项长这样：
 
 ```html
-<div class="project__media">
-  <img src="project-1.jpg" alt="项目名称的成品照片" loading="lazy">
-</div>
-```
-
-并在 `styles.css` 里加一句让图片铺满：
-
-```css
-.project__media img{width:100%;height:100%;object-fit:cover}
+<li data-src="images/work-01-cover.webp"
+    data-alt="给读屏软件的图片描述"
+    data-title="主视觉" data-subtitle="副标题"></li>
 ```
 
 ---
@@ -185,6 +199,94 @@ const slats = MicroSlats.create(document.querySelector('#myBox'), {
 需要 WebGL2，不支持时会直接跳过并露出 CSS 静态渐变兜底（不会报错、不会白屏）。
 指针的流体搅动还需要浮点渲染目标扩展（`EXT_color_buffer_float`）；
 没有该扩展时海浪照常，只是少了指针搅动。
+
+---
+
+## 作品图片环形轮播（CircularCarousel）
+
+来自 React Bits 的 `<CircularCarousel />`。原版是 React，本项目移植为**无依赖的原生实现**：
+
+| 原始实现 | 本项目的等价物 |
+|---|---|
+| `useState` / `useRef` / `useMemo` / `useLayoutEffect` | 实例字段、闭包与显式的 setup / teardown |
+| JSX 卡片与贴片渲染 | 原生 DOM 构建 |
+| 组件 CSS | **逐字保留**，类名 `circular-carousel__*` 与变量 `--cc-*` 未改动 |
+
+环的几何计算（`TILES` 分片、`radius`/`curve` 插值、弹簧阻尼、拖拽惯性、视差）
+与上游一致，四个 preset 都可用。
+
+### 交互方式
+
+- **自动旋转**：默认 `drift` 缓慢自转，鼠标悬停时停住
+- **拖动/抛掷**：按住拖动，松手有惯性并吸附到最近一张
+- **点击卡片**：把那张转到正面
+- **键盘**：左右方向键切换，`Home`/`End` 跳到首尾
+- **看大图**：点下方按钮打开灯箱，`←` `→` 切换，`Esc` 关闭
+- **缩略图**：底部缩略图点击可快速跳转
+- **触屏**：横向拖动，纵向滚动不受影响（`touch-action` 已处理）
+- **降低动效**：系统开启 `prefers-reduced-motion` 时自动停转
+
+### 调参数
+
+改 `work-carousel.js` 里的这一段：
+
+```js
+CircularCarousel.create(stageHost, {
+  preset: 'cylinder',     // cylinder | orbit | wheel | panorama
+  intro: 'rise',          // assemble | rise | spin | none
+  cardWidth: 300,         // 卡片宽度（px）
+  aspectRatio: 16 / 10,   // 宽 / 高，图片按此裁切
+  gap: 26,                // 卡片间距
+  speed: 11,              // 自转速度（度/秒）
+  autoplay: 'drift',      // drift | step | off
+  depthFade: 0.62,        // 背面淡出强度
+  cornerRadius: 12,       // 卡片圆角
+  captions: true,         // 是否显示下方说明
+  ...
+});
+```
+
+也可以在详情页的容器上覆盖：
+
+```html
+<div class="carousel-host" data-carousel data-preset="orbit" data-card-width="260">
+```
+
+轮播区的高度在 `circular-carousel.css` 里调：
+
+```css
+.carousel-stage{ height:clamp(32rem,46vw,50rem); }
+```
+
+### 用代码控制
+
+```js
+const c = window.__workCarousel;   // 详情页的轮播实例
+c.focusIndex(3);                   // 把第 4 张转到正面
+c.stepBy(1);                       // 前进一张
+c.set({ speed: 20 });              // 改参数
+c.debug();                         // 当前状态快照
+c.destroy();
+```
+
+想自己从头建一个：
+
+```js
+const c = CircularCarousel.create(document.querySelector('#myBox'), {
+  items: [{ src: 'a.jpg', alt: '描述', title: '标题', subtitle: '副标题' }],
+  preset: 'orbit', cardWidth: 260, captions: true,
+});
+```
+
+> 注意：组件会撑满父元素，所以父元素**必须有确定的高度**，
+> 否则环没有空间、什么都看不到。
+
+### 性能
+
+- 图片懒加载，只有可视区内的轮播才跑动画（`IntersectionObserver`）
+- 切到后台标签页自动停帧
+- 环只在容器尺寸变化时重新测量（`ResizeObserver`）
+- 卡片上限 64 张（防止误传几百张把环压成一个点）；预加载上限 16 张
 
 ---
 
