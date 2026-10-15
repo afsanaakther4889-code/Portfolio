@@ -449,15 +449,15 @@ em{
 }
 .project__media::after{
   content:"";position:absolute;inset:0;
-  background:var(--accent);
-  opacity:0;
-  transform:scaleY(0);transform-origin:bottom;
-  transition:transform .6s var(--bezzy2),opacity .6s var(--bezzy2);
-  mix-blend-mode:difference;
+  background:linear-gradient(to top,var(--ink-08),transparent 45%);
+  opacity:0;pointer-events:none;
+  transition:opacity .5s var(--bezzy2);
 }
-.project__link:hover .project__media::after{opacity:.9;transform:scaleY(1)}
+.project__media img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s var(--bezzy2),opacity var(--ease)}
+.project__link:hover .project__media::after{opacity:1}
+.project__link:hover .project__media img{transform:scale(1.04)}
 .project__link:hover .project__media{border-color:var(--accent)}
-.project__ph{color:var(--ink-50);position:relative;z-index:1}
 .project__body{padding-top:2rem}
 .project__meta{
   display:flex;gap:1.6rem;color:var(--accent-soft);margin-bottom:1.2rem;
@@ -601,6 +601,97 @@ em{
 .site-footer__nav a{color:var(--ink-70);transition:color var(--ease)}
 .site-footer__nav a:hover{color:var(--accent)}
 
+/* ============================================================
+   作品详情页
+   ============================================================ */
+.work-page{padding-top:calc(var(--header-h) + 5.6rem);padding-bottom:clamp(8rem,12vw,12rem)}
+
+.work-page__top{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;margin-bottom:4rem}
+.back-link{
+  display:inline-flex;align-items:center;gap:.8rem;
+  font-family:var(--mono);font-size:1.2rem;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--ink-70);transition:color var(--ease);
+}
+.back-link:hover{color:var(--accent)}
+.back-link::before{content:"←";font-size:1.4rem}
+
+.work-page__eyebrow{color:var(--accent-soft);margin-bottom:1.6rem}
+.work-page__title{
+  font-size:clamp(3.2rem,7.2vw,7.2rem);
+  line-height:1.02;letter-spacing:-.03em;font-weight:700;
+  margin-bottom:2.4rem;
+}
+.work-page__lede{
+  font-size:clamp(1.6rem,2.2vw,2.1rem);
+  line-height:1.6;color:var(--ink-70);max-width:60ch;
+  margin-top:2.4rem;
+}
+
+/* 左侧参数栏 + 右侧图集 */
+.work-page__layout{row-gap:4.8rem;margin-top:5.6rem}
+.work-meta{
+  display:flex;flex-direction:column;gap:0;
+  border-top:1px solid var(--ink-14);
+}
+.work-meta > div{
+  display:flex;flex-direction:column;gap:.5rem;
+  padding-block:1.8rem;border-bottom:1px solid var(--ink-14);
+}
+.work-meta dt{color:var(--accent);font-family:var(--mono);font-size:1.1rem;
+  letter-spacing:.10em;text-transform:uppercase}
+.work-meta dd{font-size:1.5rem;color:var(--ink-70);line-height:1.5}
+
+.work-gallery{display:flex;flex-direction:column;gap:2.4rem}
+.work-gallery figure{margin:0}
+/* 轮播的数据源列表：只给脚本读，不参与布局 */
+.gallery-source{display:none}
+.work-gallery img{
+  width:100%;height:auto;display:block;
+  border:1px solid var(--ink-08);
+  background:var(--ink-04);
+}
+.work-gallery figcaption{
+  margin-top:1.2rem;
+  font-family:var(--mono);font-size:1.1rem;letter-spacing:.08em;
+  color:var(--ink-50);text-transform:uppercase;
+}
+
+.work-page__nav{
+  display:flex;flex-wrap:wrap;gap:1.6rem;justify-content:space-between;
+  margin-top:6rem;padding-top:3.2rem;border-top:1px solid var(--ink-14);
+}
+.work-page__nav a{
+  font-family:var(--mono);font-size:1.2rem;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--ink-70);transition:color var(--ease);
+}
+.work-page__nav a:hover{color:var(--accent)}
+
+/* 图片灯箱：点图放大 */
+.lightbox{
+  position:fixed;inset:0;z-index:140;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(1.6rem,4vw,4rem);
+  background:rgba(0,0,0,.92);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:0;
+  animation:fadeIn .35s var(--bezzy2);
+}
+.lightbox[hidden]{display:none}
+.lightbox img{
+  max-width:100%;max-height:86vh;width:auto;height:auto;
+  object-fit:contain;border:1px solid var(--ink-14);
+}
+.lightbox__close{
+  position:absolute;top:2.4rem;right:2.4rem;
+  font-family:var(--mono);font-size:1.2rem;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--ink-70);transition:color var(--ease);
+}
+.lightbox__close:hover{color:var(--accent)}
+.lightbox__count{
+  position:absolute;bottom:2.4rem;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:1.1rem;letter-spacing:.10em;color:var(--ink-50);
+}
+
 /* ---------- 阅读进度 ---------- */
 .page-progress{
   position:fixed;left:0;right:0;bottom:0;height:2px;z-index:110;
@@ -612,7 +703,7 @@ em{
   transition:width .12s linear;
 }
 
-/* ---------- 移动端联系浮层 ---------- */
+/* ---------- 联系浮层 / 图片灯箱 ---------- */
 .contact-panel{
   position:fixed;inset:0;z-index:130;
   background:rgba(0,0,0,.86);
@@ -704,14 +795,13 @@ em{
   .service{grid-template-columns:6rem minmax(24rem,1fr) minmax(0,1.4fr);align-items:start}
   .service p{grid-column:3;padding-top:.6rem}
 
-  .work .project:first-child{grid-column:1/8}
-  .work .project:nth-child(2){grid-column:8/13;align-self:end}
-  .work .project:nth-child(3){grid-column:1/6}
-  .work .project:nth-child(4){grid-column:6/12}
-  .work .project:first-child .project__media,
-  .work .project:nth-child(2) .project__media{aspect-ratio:16/11}
-  .work .project:nth-child(3) .project__media,
-  .work .project:nth-child(4) .project__media{aspect-ratio:4/3}
+  /* 3 个作品的排布：第一件通栏做视觉主图，后两件并排 */
+  .work .project:first-child{grid-column:1/-1}
+  .work .project:nth-child(2){grid-column:1/7}
+  .work .project:nth-child(3){grid-column:7/13}
+  .work .project:first-child .project__media{aspect-ratio:21/9}
+  .work .project:nth-child(2) .project__media,
+  .work .project:nth-child(3) .project__media{aspect-ratio:4/3}
 
   .accent-band__grid{align-items:start}
   .accent-band__title{grid-column:1/7}
@@ -719,6 +809,15 @@ em{
 
   .about__lead{grid-column:1/6}
   .about__body{grid-column:7/13}
+
+  /* 作品详情：左侧参数栏吸顶，右侧图集 */
+  .work-page__lede{grid-column:1/9}
+  /* 上图：介绍文字通栏；下图：参数栏在左、环形轮播在右；缩略图与导航通栏 */
+  .work-page__layout .work-page__lede{grid-column:1/10;grid-row:1;margin-top:0}
+  .work-meta{grid-column:1/4;grid-row:2;align-self:start}
+  .carousel-host{grid-column:4/13;grid-row:2}
+  .carousel-thumbs{grid-column:1/-1;grid-row:3}
+  .work-page__nav{grid-column:1/-1;grid-row:4}
 
   .contact__intro{grid-column:1/6}
   .contact__form{grid-column:7/13}
@@ -728,9 +827,8 @@ em{
 
 @media (min-width:1200px){
   .hero__title{font-size:clamp(6.4rem,7.2vw,11.2rem)}
-  .project__media{aspect-ratio:4/3}
-  .work .project:first-child .project__media,
-  .work .project:nth-child(2) .project__media{aspect-ratio:16/10}
+  /* 通栏主图在宽屏上再扁一些 */
+  .work .project:first-child .project__media{aspect-ratio:24/9}
 }
 
 @media (min-width:1400px){
