@@ -86,12 +86,17 @@
   position: absolute;
   inset: 0;
   background-color: var(--tt-bg);
-  /* 纸纹 + 轻微的受光渐变，形成黑灰纸质感 */
+  /* 三层纸感：细颗粒纤维 + 大块云斑 + 顶部受光到边缘的轻微压暗 */
   background-image:
     url(../img/paper-grain.webp),
-    linear-gradient(158deg, rgba(255, 255, 255, .055) 0%, rgba(0, 0, 0, .16) 46%, rgba(0, 0, 0, .3) 100%);
-  background-size: 210px auto, 100% 100%;
-  background-blend-mode: soft-light, normal;
+    url(../img/paper-mottle.webp),
+    radial-gradient(140% 125% at 50% -14%,
+      rgba(255, 255, 255, .62) 0%,
+      rgba(255, 255, 255, 0) 42%,
+      rgba(120, 100, 70, .07) 82%,
+      rgba(120, 100, 70, .13) 100%);
+  background-size: 186px auto, 520px auto, 100% 100%;
+  background-blend-mode: soft-light, multiply, normal;
   pointer-events: auto;
 }
 

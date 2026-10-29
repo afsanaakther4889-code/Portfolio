@@ -390,8 +390,13 @@ html.js .hero__title .u path {
 
 .tk-mid { padding: 10px 0 8px; }
 .tk-k {
-  font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em;
-  color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+  display: inline-block;
+  padding: 4px 9px 3px;
+  border-radius: 3px;
+  background: var(--accent);
+  color: #1b1a18;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+  text-transform: uppercase; margin-bottom: 14px;
 }
 .tk-t {
   font-size: clamp(32px, 3.5vw, 50px); line-height: .92;
@@ -400,10 +405,17 @@ html.js .hero__title .u path {
 .tk-bot {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
   padding-top: 11px;
-  border-top: 1px dashed rgba(255, 255, 255, .22);
-  font-size: 11px; letter-spacing: .06em; opacity: .6;
+  border-top: 1px dashed rgba(92, 76, 48, .3);
+  font-size: 11px; letter-spacing: .06em; opacity: .58;
 }
-.tk-hint { color: var(--accent); opacity: 1; letter-spacing: .1em; }
+.tk-hint {
+  opacity: 1;
+  color: inherit;
+  font-weight: 500;
+  letter-spacing: .08em;
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--accent);
+}
 
 .tk-stub { width: 100%; height: 100%; display: grid; place-items: center; }
 .tk-stubT {
@@ -413,7 +425,7 @@ html.js .hero__title .u path {
 }
 .tk-stubT em {
   font-family: var(--mono); font-style: normal; font-size: 9.5px;
-  letter-spacing: .2em; opacity: .45;
+  letter-spacing: .2em; opacity: .5;
 }
 
 /* ---------- 开场遮罩：黑屏 + 粒子 + 票据 ---------- */
