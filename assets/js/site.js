@@ -389,13 +389,13 @@
         tiltReach: 340,
         parallax: 6,
         perspective: 1000,
-        background: '#ededea',
-        stubBackground: '#e3e3df',
-        color: '#2a2a28',
-        borderColor: 'rgba(90, 90, 84, 0.34)',
+        background: '#2c2f34',
+        stubBackground: '#34373d',
+        color: '#e9eaec',
+        borderColor: 'rgba(255, 255, 255, 0.24)',
         border: true,
         borderWidth: 1,
-        ariaLabel: '撕开票据，进入网站',
+        ariaLabel: '撕开观展券，进入网站',
         onTear: dismissGate
       });
       window.__gateReady = true;
