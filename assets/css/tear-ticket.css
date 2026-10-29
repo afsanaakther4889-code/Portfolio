@@ -86,22 +86,50 @@
   position: absolute;
   inset: 0;
   background-color: var(--tt-bg);
-  /* 拉丝金属：横向纹理 + 斜向高光带 + 左上角聚光 */
+  /* 纸感：细颗粒纤维 + 大块云斑 + 边缘轻微压暗 */
   background-image:
-    url(../img/metal-brush.webp),
-    linear-gradient(104deg,
-      rgba(255, 255, 255, .18) 0%,
-      rgba(255, 255, 255, .03) 19%,
-      rgba(255, 255, 255, .11) 33%,
-      rgba(0, 0, 0, .12) 57%,
-      rgba(0, 0, 0, .32) 100%),
-    radial-gradient(130% 150% at 16% -30%,
-      rgba(255, 255, 255, .22) 0%,
-      rgba(255, 255, 255, 0) 52%);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-blend-mode: overlay, normal, normal;
+    url(../img/paper-grain.webp),
+    url(../img/paper-mottle.webp),
+    radial-gradient(140% 125% at 50% -14%,
+      rgba(255, 255, 255, .58) 0%,
+      rgba(255, 255, 255, 0) 42%,
+      rgba(96, 96, 90, .07) 82%,
+      rgba(96, 96, 90, .15) 100%);
+  background-size: 186px auto, 520px auto, 100% 100%;
+  background-blend-mode: soft-light, multiply, normal;
   pointer-events: auto;
+  overflow: hidden;
+}
+
+/* 背景里淡淡的大写英文：一条齿孔边上的微印刷 + 一个被裁切的大字 */
+.tear-ticket__paper:not(.tear-ticket__paper--stub)::before {
+  content: "PORTFOLIO";
+  position: absolute;
+  left: -3%;
+  bottom: -11%;
+  font-family: var(--f, sans-serif);
+  font-size: 132px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .015em;
+  white-space: nowrap;
+  color: rgba(42, 42, 38, .05);
+  pointer-events: none;
+}
+
+.tear-ticket__paper:not(.tear-ticket__paper--stub)::after {
+  content: "JIANO · PORTFOLIO EXHIBITION · ADMIT ONE · JIANO · PORTFOLIO EXHIBITION ·";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  padding-left: 30px;
+  font-family: var(--mono, monospace);
+  font-size: 7.5px;
+  letter-spacing: .38em;
+  white-space: nowrap;
+  color: rgba(42, 42, 38, .2);
+  pointer-events: none;
 }
 
 .tear-ticket__paper--stub {

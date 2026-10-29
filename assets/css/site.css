@@ -405,7 +405,7 @@ html.js .hero__title .u path {
 .tk-bot {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
   padding-top: 11px;
-  border-top: 1px dashed rgba(255, 255, 255, .18);
+  border-top: 1px dashed rgba(90, 90, 84, .3);
   font-size: 11px; letter-spacing: .06em; opacity: .58;
 }
 .tk-hint {
@@ -443,7 +443,7 @@ html.gate-pending .gate { display: grid; }
 .gate.is-out { opacity: 0; pointer-events: none; }
 
 /* 金属票撕开时，纤维用偏亮的金属灰，否则在黑底上看不见 */
-.gate .tear-ticket__fibres path { stroke: rgba(198, 203, 210, .62); }
+.gate .tear-ticket__fibres path { stroke: rgba(232, 231, 226, .75); }
 
 .gate__canvas {
   position: absolute; inset: 0;
@@ -738,7 +738,7 @@ html.gate-pending .gate { display: grid; }
 .res__t {
   position: relative;
   margin-top: 15px; padding-top: 14px;
-  border-top: 1px dashed rgba(255, 255, 255, .18);
+  border-top: 1px dashed rgba(90, 90, 84, .3);
   font-size: clamp(14px, 1.15vw, 16px); font-weight: 500;
   letter-spacing: -.01em; transition: color .3s;
 }
