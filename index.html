@@ -1,455 +1,718 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="is-design">
+<html lang="zh-CN" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>程鑫涛 — 工业设计师</title>
-<meta name="description" content="程鑫涛，工业设计师。从结构、工艺到量产落地，把模糊的想法变成可以握在手里的产品。">
-<meta name="theme-color" content="#000000">
+<title>尖叫工业设计教育 · 工业设计作品集</title>
+<meta name="description" content="尖叫工业设计教育 JIANO：工业设计考研复试作品集作品展示。三个完整项目、三十八页推导，从调研、造型到版式叙事。">
+<meta name="theme-color" content="#0B0B0C">
+<meta property="og:title" content="尖叫工业设计教育 · 让作品集先替你开口">
+<meta property="og:description" content="三个完整项目、三十八页推导，一次看完。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="程鑫涛 — 工业设计师">
-<meta property="og:description" content="从结构、工艺到量产落地，把模糊的想法变成可以握在手里的产品。">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' fill='%23000'/%3E%3Cpath d='M36 8.329V0H27.67v2.395H8.33V0H0v8.329h2.395V27.67H0V36h8.329v-2.395H27.67V36H36v-8.329h-2.395V22.165H36v-8.33h-8.329v2.395h-5.506v-2.395h-8.33v8.33h8.33v-2.395h5.506v2.395h2.395v5.505h-2.395v2.395H8.33v-2.395H5.935V8.33H8.33V5.935H27.67V8.33H36Z' fill='%235B5BFF'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="styles.css">
+<script>
+  /* 开场遮罩：在首帧之前就锁住滚动，避免首页闪一下 */
+  document.documentElement.classList.add('gate-pending');
+  window.setTimeout(function () {
+    if (!window.__gateReady) document.documentElement.classList.remove('gate-pending');
+  }, 6000);
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0B0C'/%3E%3Crect x='8' y='13' width='3' height='6' rx='1.5' fill='%23C6FF00'/%3E%3Crect x='14.5' y='8' width='3' height='16' rx='1.5' fill='%23fff'/%3E%3Crect x='21' y='11' width='3' height='10' rx='1.5' fill='%23C6FF00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Regular.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Medium.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Bold.min.css">
+<link rel="stylesheet" href="assets/css/drift-wall.css">
+<link rel="stylesheet" href="assets/css/masonry.css">
+<link rel="stylesheet" href="assets/css/tear-ticket.css">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
-<a class="skip-link" href="#main">跳到主要内容</a>
+<a class="skip" href="#works">跳到作品</a>
 
-<!-- ============ 预加载 ============ -->
-<div class="preloader" id="preloader" aria-hidden="true">
-  <div class="preloader__inner">
-    <svg class="mark" viewBox="0 0 50 55" role="img" aria-label="程鑫涛 标志">
-      <rect x="6.5" y="0" width="37" height="4"></rect>
-      <rect x="6.5" y="51" width="37" height="4"></rect>
-      <path d="M5 7h27v3 10h-3V10H8v10H5V7Z"></path>
-      <path d="M5 35h3v10h21V35h3v13H5v-3-10Z"></path>
-      <g class="mark__spark">
-        <rect x="8" y="20" width="3" height="3"></rect>
-        <rect x="11" y="23" width="3" height="3"></rect>
-        <rect x="14" y="26" width="3" height="3"></rect>
-        <rect x="11" y="29" width="3" height="3"></rect>
-        <rect x="8" y="32" width="3" height="3"></rect>
-        <rect x="29" y="20" width="3" height="3"></rect>
-        <rect x="26" y="23" width="3" height="3"></rect>
-        <rect x="23" y="26" width="3" height="3"></rect>
-        <rect x="26" y="29" width="3" height="3"></rect>
-        <rect x="29" y="32" width="3" height="3"></rect>
-      </g>
-    </svg>
-    <em class="preloader__count mono"><span id="loadCount">0%</span></em>
-  </div>
-</div>
+<!-- ============ 导航 ============ -->
+<header class="head" id="head">
+  <div class="head__inner">
+    <a class="brand" href="#top" aria-label="尖叫工业设计教育 首页">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 28 28" fill="none"><rect x="3" y="11" width="3.4" height="6" rx="1.7" fill="#C6FF00"/><rect x="9.6" y="6" width="3.4" height="16" rx="1.7" fill="currentColor"/><rect x="16.2" y="9" width="3.4" height="10" rx="1.7" fill="#C6FF00"/><rect x="22.8" y="12.5" width="3.4" height="3" rx="1.5" fill="currentColor"/></svg>
+      </span>
+      <span class="brand__text"><b>尖叫</b><span>JIANO DESIGN EDU</span></span>
+    </a>
 
-<!-- ============ 页头 ============ -->
-<header class="site-header" id="siteHeader">
-  <div class="grid site-header__grid">
-    <div class="site-header__brand">
-      <a href="#top" aria-label="回到首页">
-        <svg viewBox="0 0 36 36" width="24" height="24" aria-hidden="true">
-          <path d="M36 8.329V0H27.67v2.395H8.33V0H0v8.329h2.395V27.67H0V36h8.329v-2.395H27.67V36H36v-8.329h-2.395V22.165H36v-8.33h-8.329v2.395h-5.506v-2.395h-8.33v8.33h8.33v-2.395h5.506v2.395h2.395v5.505h-2.395v2.395H8.33v-2.395H5.935V8.33H8.33V5.935H27.67V8.33H36Z"></path>
-        </svg>
-        <span class="mono site-header__name">程鑫涛</span>
-      </a>
-    </div>
-
-    <nav class="site-header__nav" aria-label="主导航">
-      <a href="#work">作品</a>
-      <a href="#services">能力</a>
-      <a href="#about">关于</a>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="#works">作品</a>
+      <a href="#research">调研</a>
+      <a href="#singles">单页</a>
+      <a href="#wall">作品墙</a>
+      <a href="#system">过程</a>
     </nav>
 
-    <div class="site-header__cta">
-      <button type="button" class="btn btn--outline" data-contact-open>聊一聊</button>
-      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteHeader" data-nav-toggle>
-        <span class="sr-only">展开菜单</span>
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
+    <div class="head__act">
+      <a class="btn btn--pill btn--ink head__btn" href="#contact" data-magnetic>联系</a>
+      <button class="burger" id="burger" aria-label="打开菜单" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
       </button>
     </div>
   </div>
+  <div class="head__progress" id="progress" aria-hidden="true"><i></i></div>
 </header>
 
-<main id="main">
+<!-- 移动端菜单 -->
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__inner">
+    <nav aria-label="移动端导航">
+      <a href="#works"><span>01</span>作品</a>
+      <a href="#research"><span>02</span>调研</a>
+      <a href="#singles"><span>03</span>单页</a>
+      <a href="#wall"><span>04</span>作品墙</a>
+      <a href="#system"><span>05</span>过程</a>
+    </nav>
+    <div class="menu__foot">
+      <a class="btn btn--pill btn--accent" href="#contact">联系我们</a>
+      <p>hello@jiano.design · 微信 JIANO‑DESIGN</p>
+    </div>
+  </div>
+</div>
+
+<main id="top">
 
   <!-- ============ 首屏 ============ -->
-  <section class="hero" id="top">
-    <div class="grid">
-      <p class="hero__eyebrow mono reveal">工业设计师 · 结构 &amp; 量产落地</p>
-      <h1 class="hero__title">
-        <span class="reveal-line"><span>把想法</span></span>
-        <span class="reveal-line"><span>做成<em>握得住</em>的东西</span></span>
-      </h1>
-      <p class="hero__lede reveal">
-        我是程鑫涛。从草图、结构到工艺与量产，我把一个还没有形状的念头，
-        一路推到能被人真正拿在手里的产品。
-      </p>
-      <div class="hero__actions reveal">
-        <a class="btn btn--solid" href="#work">查看作品</a>
-        <a class="btn btn--outline" href="#contact">合作方式</a>
+  <section class="hero sec--dark" id="hero" data-bg="dark">
+    <div class="hero__wall" id="heroWall" aria-hidden="true"></div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="wrap hero__wrap">
+      <div class="hero__copy">
+        <p class="eyebrow hero__eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          工业设计考研 · 复试作品集
+        </p>
+
+        <h1 class="hero__title">
+          <span class="ln"><span style="--d:.05s">让作品集</span></span>
+          <span class="ln"><span style="--d:.16s">先替你<em>开口<svg class="u" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8c40-6 66-6 96-2s58 5 100-3"/></svg></em></span></span>
+        </h1>
+
+        <p class="hero__lead">
+          尖叫工业设计教育，只做一件事：把工业设计考研复试作品集，做到能被导师记住。
+          这里放着学员的完整项目——从选题、调研、建模渲染到版式叙事，一页一页摊开给你看。
+        </p>
+
+        <div class="hero__act">
+          <a class="btn btn--pill btn--accent" href="#works" data-magnetic>
+            <span>查看作品</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn--pill btn--ghost" href="#wall" data-magnetic>看作品墙</a>
+        </div>
+
+        <ul class="hero__meta">
+          <li><b>3</b><span>个完整项目</span></li>
+          <li><b>38</b><span>页作品推导</span></li>
+          <li><b>8</b><span>年作品集教研</span></li>
+        </ul>
       </div>
     </div>
 
-    <!-- MicroSlats 交互色带：源自 React Bits 的 <MicroSlats />，已移植为无依赖原生 WebGL2 -->
-    <div class="hero__field"
-         data-micro-slats
-         aria-hidden="true"
-         data-slats-preset="swell"
-         data-slats-color="#5B5BFF"
-         data-slats-glint="#ffffff"
-         data-slats-background="transparent"
-         data-slats-width="9"
-         data-slats-height="26"
-         data-slats-gap="3"
-         data-slats-roundness="0.85"
-         data-slats-speed="0.6"
-         data-slats-scale="1.6"
-         data-slats-chop="0.5"
-         data-slats-glint-strength="0.8"
-         data-slats-contrast="1.3"
-         data-slats-perspective="0.72"
-         data-slats-fog="0.5"
-         data-slats-cursor-strength="1.1"
-         data-slats-cursor-size="46"
-         data-slats-swirl="0.18"
-         data-slats-trail="1.6"
-         data-slats-lean="0.5"></div>
+    <div class="wrap hero__foot">
+      <a class="hero__scroll" href="#works" aria-label="向下滚动">
+        <span>SCROLL</span><i></i>
+      </a>
+      <p class="hero__hint"><span class="hero__hintDot"></span>背景为学员作品 · 指到哪一页，就停在哪一页</p>
+    </div>
+  </section>
 
-    <div class="grid hero__stats">
-      <div class="stat reveal">
-        <span class="stat__num mono"><em data-count="8">0</em>+</span>
-        <span class="stat__label mono">年产品设计经验</span>
-      </div>
-      <div class="stat reveal">
-        <span class="stat__num mono"><em data-count="40">0</em>+</span>
-        <span class="stat__label mono">落地量产项目</span>
-      </div>
-      <div class="stat reveal">
-        <span class="stat__num mono"><em data-count="12">0</em></span>
-        <span class="stat__label mono">合作过的品牌</span>
-      </div>
-      <div class="stat reveal">
-        <span class="stat__num mono"><em data-count="100">0</em>%</span>
-        <span class="stat__label mono">交付到图纸与实物</span>
+  <!-- ============ 院校 ============ -->
+  <section class="schools sec--dark" aria-label="学员覆盖院校" data-bg="dark">
+    <div class="wrap schools__wrap">
+      <p class="schools__label">学员覆盖院校 <span>/ TARGET SCHOOLS</span></p>
+      <div class="marquee marquee--mute" data-speed=".6" data-reverse>
+        <div class="marquee__track">
+          <span>清华大学</span><span>江南大学</span><span>同济大学</span><span>湖南大学</span><span>北京理工大学</span><span>中国美术学院</span><span>广州美术学院</span><span>鲁迅美术学院</span><span>武汉理工大学</span><span>南京艺术学院</span><span>浙江大学</span><span>东南大学</span>
+          <span>清华大学</span><span>江南大学</span><span>同济大学</span><span>湖南大学</span><span>北京理工大学</span><span>中国美术学院</span><span>广州美术学院</span><span>鲁迅美术学院</span><span>武汉理工大学</span><span>南京艺术学院</span><span>浙江大学</span><span>东南大学</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 痛点 ============ -->
-  <section class="section section--problems" id="problems">
-    <div class="grid">
-      <h2 class="section__title reveal">
-        大多数产品<br>不是差在创意<br>而是差在<em>落地</em>
-      </h2>
-
-      <ul class="problems">
-        <li class="problem reveal">
-          <span class="problem__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48"><path d="M6 42V14l12-8 12 8v28" fill="none" stroke-width="3"/><path d="M30 42V22h12v20" fill="none" stroke-width="3"/></svg>
-          </span>
-          <h3>效果图很好看，做出来不是那样</h3>
-          <p>渲染时可以忽略的圆角、缝隙、壁厚，到了模具和注塑环节全都会变成问题。</p>
-        </li>
-        <li class="problem reveal">
-          <span class="problem__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke-width="3"/><path d="M24 12v12l8 6" fill="none" stroke-width="3"/></svg>
-          </span>
-          <h3>反复改稿，时间全耗在来回确认</h3>
-          <p>需求没有翻译成结构语言，每次评审都在推翻上一轮，工期被无限拉长。</p>
-        </li>
-        <li class="problem reveal">
-          <span class="problem__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48"><path d="M8 40 24 8l16 32" fill="none" stroke-width="3"/><path d="M16 28h16" fill="none" stroke-width="3"/></svg>
-          </span>
-          <h3>结构一改，成本就失控</h3>
-          <p>零件数量、装配工序、模具结构调整，每一项都在悄悄推高单件成本。</p>
-        </li>
-        <li class="problem reveal">
-          <span class="problem__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="2" fill="none" stroke-width="3"/><path d="M8 20h32M20 20v20" fill="none" stroke-width="3"/></svg>
-          </span>
-          <h3>图纸交付了，工厂还是做不出来</h3>
-          <p>公差、拔模、装配顺序没有交代清楚，问题留到试产才爆发。</p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ 宣言跑马灯 ============ -->
-  <section class="marquee-band" aria-label="设计原则">
-    <div class="marquee" data-marquee>
-      <div class="marquee__track">
-        <span>结构先行</span><span aria-hidden="true">·</span>
-        <span>工艺可造</span><span aria-hidden="true">·</span>
-        <span>成本可控</span><span aria-hidden="true">·</span>
-        <span>细节诚实</span><span aria-hidden="true">·</span>
-        <span>能量产才算设计完成</span><span aria-hidden="true">·</span>
+  <!-- ============ 主张 ============ -->
+  <section class="intro sec--dark" id="intro" data-bg="dark">
+    <div class="wrap intro__wrap">
+      <div class="intro__left">
+        <p class="eyebrow" data-reveal>我们相信 <span class="slash">/</span> OUR BELIEF</p>
+        <h2 class="h2 intro__title" data-reveal data-reveal-delay="60">
+          作品集不是把作业<br>排得<span class="hl">好看一点</span>。
+        </h2>
       </div>
-    </div>
-  </section>
+      <div class="intro__right">
+        <p class="intro__text" data-reveal data-reveal-delay="120">
+          复试只有十几分钟，导师翻你作品集的时间更短。<br>
+          所以我们只训练一件事——让每一页都在回答同一个问题：
+          <b>你为什么这样设计。</b>
+        </p>
+        <p class="intro__text intro__text--mute" data-reveal data-reveal-delay="180">
+          下面三个项目，都从一句“我想解决这个”开始，最后落到一份能被追问三十遍的作品集。
+          顺着推导往下翻，你看到的不是效果图，是判断。
+        </p>
 
-  <!-- ============ 能力 ============ -->
-  <section class="section" id="services">
-    <div class="grid">
-      <header class="section__head">
-        <p class="mono section__eyebrow reveal">能力 / SERVICES</p>
-        <h2 class="section__title reveal">我能<em>接住</em>的环节</h2>
-      </header>
-
-      <ol class="services">
-        <li class="service reveal">
-          <span class="service__idx mono">01</span>
-          <h3>产品定义与用户研究</h3>
-          <p>把模糊的需求拆成使用场景、人群与功能优先级，先想清楚为谁解决什么问题。</p>
-        </li>
-        <li class="service reveal">
-          <span class="service__idx mono">02</span>
-          <h3>工业设计与形态推敲</h3>
-          <p>草图、CMF、人机尺度与形态语言，让产品既符合品牌，也经得起近距离端详。</p>
-        </li>
-        <li class="service reveal">
-          <span class="service__idx mono">03</span>
-          <h3>结构与可制造性</h3>
-          <p>拆件、壁厚、脱模、装配与公差链，在开模之前把风险清干净。</p>
-        </li>
-        <li class="service reveal">
-          <span class="service__idx mono">04</span>
-          <h3>手板与试产跟进</h3>
-          <p>3D 打印、CNC、硅胶复模到试产，跟到工厂现场，把问题留在样板阶段解决。</p>
-        </li>
-        <li class="service reveal">
-          <span class="service__idx mono">05</span>
-          <h3>渲染与视觉表达</h3>
-          <p>keyShot 渲染、爆炸图与使用场景图，让方案在评审桌上就能被看懂。</p>
-        </li>
-        <li class="service reveal">
-          <span class="service__idx mono">06</span>
-          <h3>包装与量产文档</h3>
-          <p>包装结构、装配说明书与量产图纸，交付给供应链的是完整可执行的资料。</p>
-        </li>
-      </ol>
+        <div class="figures" data-reveal data-reveal-delay="220">
+          <div class="figure">
+            <b class="count" data-to="38" data-suffix="">0</b>
+            <span>页 / 平均项目篇幅</span>
+          </div>
+          <div class="figure">
+            <b class="count" data-to="3" data-suffix="">0</b>
+            <span>个 / 完整项目</span>
+          </div>
+          <div class="figure">
+            <b class="count" data-to="4" data-suffix="">0</b>
+            <span>轮 / 每份作品推敲</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ============ 作品 ============ -->
-  <section class="section" id="work">
-    <div class="grid">
-      <header class="section__head">
-        <p class="mono section__eyebrow reveal">作品 / SELECTED WORK</p>
-        <h2 class="section__title reveal">精选<em>项目</em></h2>
-        <p class="section__note mono reveal">3 个落地项目 · 点开看完整图集</p>
+  <section class="works" id="works" data-bg="light">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow" data-reveal>作品 <span class="slash">/</span> SELECTED WORKS</p>
+        <div class="sec-head__row">
+          <h2 class="h2" data-reveal data-reveal-delay="60">三个项目，<br>三种解题方式</h2>
+          <p class="sec-head__desc" data-reveal data-reveal-delay="120">
+            以下作品均为学员复试作品集完整版。
+            点击任意作品进入项目浏览，顺着推导往下翻——这也是导师看你的方式。
+            <span class="sec-head__hint">共 38 页 · 支持 ← → 翻页</span>
+          </p>
+        </div>
       </header>
 
-      <div class="work">
+      <div class="filters" data-reveal>
+        <button class="chip is-on" data-filter="all" aria-pressed="true">全部 <i>03</i></button>
+        <button class="chip" data-filter="hw" aria-pressed="false">智能硬件 <i>01</i></button>
+        <button class="chip" data-filter="home" aria-pressed="false">家居生活 <i>01</i></button>
+        <button class="chip" data-filter="ce" aria-pressed="false">消费电子 <i>01</i></button>
+      </div>
 
-        <!-- 复制任意一个 <article class="project"> 即可新增作品 -->
-        <article class="project reveal">
-          <a class="project__link" href="work-01.html" aria-label="查看「蒜乐扒」儿童手摇剥蒜器详情">
-            <div class="project__media">
-              <img src="images/work-01-cover.webp" width="1600" height="900" loading="lazy" decoding="async"
-                   alt="Sukid「蒜乐扒」儿童手摇剥蒜器：米白色机身、透明集蒜仓与金属摇柄">
+      <div class="grid" id="grid">
+        <article class="work work--wide" data-work="sukid" data-cats="home" data-reveal>
+          <figure class="work__media">
+            <img src="assets/img/sukid/thumb-01.webp" alt="蒜乐扒儿童手摇剥蒜器作品集封面页" width="760" height="428" loading="lazy" decoding="async">
+            <span class="work__glow" aria-hidden="true"></span>
+          </figure>
+          <div class="work__meta">
+            <span class="work__no">01</span>
+            <div class="work__info">
+              <h3>蒜乐扒 · 儿童手摇剥蒜器</h3>
+              <p>Sukid / Garlic Sharpener <span class="dotSep">·</span> 13 页 <span class="dotSep">·</span> 家居生活</p>
             </div>
-            <div class="project__body">
-              <p class="project__meta mono"><span>儿童厨具</span><span>5 张图</span></p>
-              <h3 class="project__title">「蒜乐扒」儿童手摇剥蒜器</h3>
-              <p class="project__desc">
-                把剥蒜这件家务变成孩子能自己完成的操作。手摇驱动、无刀刃，透明集蒜仓让成果被看见。
-              </p>
-              <ul class="project__tags mono">
-                <li>产品定义</li><li>结构设计</li><li>CMF</li><li>儿童安全</li>
-              </ul>
-            </div>
-          </a>
+            <span class="work__go" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <button class="work__open" data-open="sukid">打开作品：蒜乐扒 · 儿童手摇剥蒜器</button>
         </article>
 
-        <article class="project reveal">
-          <a class="project__link" href="work-02.html" aria-label="查看 NetAce 网球智能陪练机器人详情">
-            <div class="project__media">
-              <img src="images/work-02-cover.webp" width="1600" height="900" loading="lazy" decoding="async"
-                   alt="NetAce 网球智能陪练机器人停在球场上，周围散落网球">
+        <article class="work" data-work="netace" data-cats="hw" data-reveal data-reveal-delay="60">
+          <figure class="work__media">
+            <img src="assets/img/netace/thumb-01.webp" alt="NetAce 网球智能陪练机器人作品集封面页" width="760" height="428" loading="lazy" decoding="async">
+            <span class="work__glow" aria-hidden="true"></span>
+          </figure>
+          <div class="work__meta">
+            <span class="work__no">02</span>
+            <div class="work__info">
+              <h3>NetAce · 网球智能陪练机器人</h3>
+              <p>NetAce / Tennis Trainer <span class="dotSep">·</span> 13 页 <span class="dotSep">·</span> 智能硬件</p>
             </div>
-            <div class="project__body">
-              <p class="project__meta mono"><span>智能硬件</span><span>5 张图</span></p>
-              <h3 class="project__title">NetAce 网球智能陪练机器人</h3>
-              <p class="project__desc">
-                把智能发球、自动捡球、AI 陪练和数据复盘装进一台能自己跑的机器，让单人训练也完整。
-              </p>
-              <ul class="project__tags mono">
-                <li>形态语言</li><li>结构布局</li><li>量产可行性</li>
-              </ul>
-            </div>
-          </a>
+            <span class="work__go" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <button class="work__open" data-open="netace">打开作品：NetAce · 网球智能陪练机器人</button>
         </article>
 
-        <article class="project reveal">
-          <a class="project__link" href="work-03.html" aria-label="查看 TESSAN 桌面多功能插座详情">
-            <div class="project__media">
-              <img src="images/work-03-cover.webp" width="1600" height="900" loading="lazy" decoding="async"
-                   alt="TESSAN 桌面多功能插座：白色机身配灰色面板与阵列出光孔">
+        <article class="work" data-work="tessan" data-cats="ce" data-reveal data-reveal-delay="120">
+          <figure class="work__media">
+            <img src="assets/img/tessan/thumb-10.webp" alt="TESSAN 桌面能源中枢作品集渲染页" width="760" height="428" loading="lazy" decoding="async">
+            <span class="work__glow" aria-hidden="true"></span>
+          </figure>
+          <div class="work__meta">
+            <span class="work__no">03</span>
+            <div class="work__info">
+              <h3>TESSAN · 桌面能源中枢</h3>
+              <p>Tessan / Desktop Energy Hub <span class="dotSep">·</span> 12 页 <span class="dotSep">·</span> 消费电子</p>
             </div>
-            <div class="project__body">
-              <p class="project__meta mono"><span>桌面电力</span><span>7 张图</span></p>
-              <h3 class="project__title">TESSAN 桌面多功能插座</h3>
-              <p class="project__desc">
-                桌面充电与外出补能共用一套方案。模块化组合，多接口输出，把插座从配件做成桌面上的物件。
-              </p>
-              <ul class="project__tags mono">
-                <li>ID 设计</li><li>模块化结构</li><li>多接口</li>
-              </ul>
-            </div>
-          </a>
+            <span class="work__go" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <button class="work__open" data-open="tessan">打开作品：TESSAN · 桌面能源中枢</button>
         </article>
+      </div>
 
+      <p class="grid__note" data-reveal>全部页面均为学员作品，部分院校作品已做脱敏处理。</p>
+    </div>
+  </section>
+
+  <!-- ============ 调研资料 ============ -->
+  <section class="research sec--dark" id="research" data-bg="dark">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow eyebrow--lite" data-reveal>调研资料 <span class="slash">/</span> RESEARCH</p>
+        <div class="sec-head__row">
+          <h2 class="h2 h2--lite" data-reveal data-reveal-delay="60">先有调研，<br>再谈设计</h2>
+          <p class="sec-head__desc" data-reveal data-reveal-delay="120">
+            竞品拆解、用户画像、需求优先级、情绪曲线——这些不是作品集里最好看的部分，
+            但导师的每一个追问，答案都在这儿。点击任意一张，看完整页面。
+          </p>
+        </div>
+      </header>
+
+      <div class="research__grid">
+        <button class="res" data-work="sukid" data-page="5" data-cursor="看这一页" data-reveal>
+          <figure class="res__fig">
+            <img src="assets/img/sukid/thumb-05.webp" alt="竞品优劣与多维评估雷达图页面" width="760" height="428" loading="lazy" decoding="async">
+            <span class="res__no">01</span>
+          </figure>
+          <p class="res__t">竞品多维评估<em>Competitive Radar</em></p>
+        </button>
+
+        <button class="res" data-work="netace" data-page="4" data-cursor="看这一页" data-reveal data-reveal-delay="40">
+          <figure class="res__fig">
+            <img src="assets/img/netace/thumb-04.webp" alt="目标用户画像页面" width="760" height="428" loading="lazy" decoding="async">
+            <span class="res__no">02</span>
+          </figure>
+          <p class="res__t">用户画像<em>Persona</em></p>
+        </button>
+
+        <button class="res" data-work="tessan" data-page="1" data-cursor="看这一页" data-reveal data-reveal-delay="80">
+          <figure class="res__fig">
+            <img src="assets/img/tessan/thumb-01.webp" alt="市场洞察与数据看板页面" width="760" height="428" loading="lazy" decoding="async">
+            <span class="res__no">03</span>
+          </figure>
+          <p class="res__t">市场洞察<em>Market Insight</em></p>
+        </button>
+
+        <button class="res" data-work="sukid" data-page="4" data-cursor="看这一页" data-reveal data-reveal-delay="120">
+          <figure class="res__fig">
+            <img src="assets/img/sukid/thumb-04.webp" alt="深度访谈与用户共振页面" width="760" height="428" loading="lazy" decoding="async">
+            <span class="res__no">04</span>
+          </figure>
+          <p class="res__t">深度访谈<em>User Interview</em></p>
+        </button>
+
+        <button class="res" data-work="netace" data-page="8" data-cursor="看这一页" data-reveal>
+          <figure class="res__fig">
+            <img src="assets/img/netace/thumb-08.webp" alt="KANO 需求优先级页面" width="760" height="428" loading="lazy" decoding="async">
+            <span class="res__no">05</span>
+          </figure>
+          <p class="res__t">需求优先级<em>KANO Model</em></p>
+        </button>
+
+        <button class="res" data-work="tessan" data-page="2" data-cursor="看这一页" data-reveal data-reveal-delay="40">
+          <figure class="res__fig">
+            <img src="assets/img/tessan/thumb-02.webp" alt="竞品对比调研概述页面" width="760" height="428" loading="lazy" decoding="async">
+            <span class="res__no">06</span>
+          </figure>
+          <p class="res__t">竞品对比<em>Benchmark</em></p>
+        </button>
+
+        <button class="res" data-work="netace" data-page="5" data-cursor="看这一页" data-reveal data-reveal-delay="80">
+          <figure class="res__fig">
+            <img src="assets/img/netace/thumb-05.webp" alt="用户旅程与情绪曲线页面" width="760" height="428" loading="lazy" decoding="async">
+            <span class="res__no">07</span>
+          </figure>
+          <p class="res__t">用户旅程<em>Journey Map</em></p>
+        </button>
+
+        <button class="res" data-work="sukid" data-page="3" data-cursor="看这一页" data-reveal data-reveal-delay="120">
+          <figure class="res__fig">
+            <img src="assets/img/sukid/thumb-03.webp" alt="市场调研与用户洞察页面" width="760" height="428" loading="lazy" decoding="async">
+            <span class="res__no">08</span>
+          </figure>
+          <p class="res__t">市场调研<em>Market Research</em></p>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- ============ 纯色强调版块 ============ -->
-  <section class="accent-band" id="engagement">
-    <div class="grid accent-band__grid">
-      <h2 class="accent-band__title">
-        设计<em>合作</em><br>方式
-      </h2>
-      <div class="accent-band__body">
-        <p class="accent-band__lede">
-          按项目或按月合作，报价取决于零件数量、结构复杂度与是否需要跟到量产。
-          聊完之后我会给你一份明确的范围建议，而不是一句“看情况”。
-        </p>
-        <dl class="accent-band__specs">
-          <div><dt class="mono">起步方式</dt><dd>一次免费需求沟通</dd></div>
-          <div><dt class="mono">常见周期</dt><dd>2 – 8 周 / 阶段</dd></div>
-          <div><dt class="mono">交付物</dt><dd>图纸 · 渲染 · 手板 · 量产资料</dd></div>
-        </dl>
-        <a class="btn btn--invert" href="#contact">开始沟通</a>
-      </div>
+  <!-- ============ 同学单页 ============ -->
+  <section class="singles" id="singles" data-bg="light">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow" data-reveal>作品集单页 <span class="slash">/</span> SELECTED PAGES</p>
+        <div class="sec-head__row">
+          <h2 class="h2" data-reveal data-reveal-delay="60">每一页，<br>都独立成立</h2>
+          <p class="sec-head__desc" data-reveal data-reveal-delay="120">
+            来自不同项目、不同院校的作品集单页。一页只讲一件事，讲完就翻。
+            <span class="sec-head__hint">点击任意一页看大图 · 方向键翻页</span>
+          </p>
+        </div>
+      </header>
+
+      <div id="singlesMasonry"></div>
+      <p class="grid__note" data-reveal>均为学员作品，部分院校作品已做脱敏处理。</p>
     </div>
   </section>
 
-  <!-- ============ 关于 ============ -->
-  <section class="section" id="about">
-    <div class="grid about">
-      <div class="about__lead">
-        <p class="mono section__eyebrow reveal">关于 / ABOUT</p>
-        <h2 class="about__title reveal">
-          <em>8 年</em>产品设计<br>从草图到产线
-        </h2>
+  <!-- ============ 作品墙 ============ -->
+  <section class="wall sec--dark" id="wall" data-bg="dark">
+    <div class="wrap wall__head">
+      <div>
+        <p class="eyebrow eyebrow--lite" data-reveal>作品墙 <span class="slash">/</span> THE WALL</p>
+        <h2 class="h2 h2--lite" data-reveal data-reveal-delay="60">三十八页，<br>一次看完</h2>
       </div>
-      <div class="about__body">
-        <p class="reveal">
-          我是程鑫涛，工业设计师。做过消费电子、家居产品与工具器械，
-          也待过工厂、跟过试产、被模具师傅当面指出过画得不对的地方 ——
-          这些经历让我更愿意在设计阶段就把“能不能做出来”想透。
-        </p>
-        <p class="reveal">
-          我不太喜欢把设计停留在效果图里。一个方案能不能量产、成本是否合理、
-          装配线上工人好不好操作，这些才是我判断设计是否成立的标准。
-        </p>
-        <ul class="about__facts">
-          <li class="reveal"><span class="mono">擅长</span>结构设计 · CMF · 可制造性评估</li>
-          <li class="reveal"><span class="mono">工具</span>SolidWorks · Rhino · KeyShot · AI 辅助设计</li>
-          <li class="reveal"><span class="mono">领域</span>消费电子 · 家居 · 工具器械</li>
-          <li class="reveal"><span class="mono">状态</span>可承接新项目</li>
-        </ul>
+      <p class="wall__note" data-reveal data-reveal-delay="120">
+        调研、草图、建模、渲染、版式——一个项目的全部页面都在这里。<br>
+        点任意一页，从那一页开始看。
+      </p>
+    </div>
+
+    <div class="wall__rail" id="wallRail">
+      <div class="wall__row marquee" data-reverse>
+        <div class="wall__track" data-wall-row="0"></div>
       </div>
+      <div class="wall__row marquee">
+        <div class="wall__track" data-wall-row="1"></div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <p class="wall__hint" data-reveal>
+        <span class="dot" aria-hidden="true"></span>悬停暂停 · 点击任意页面进入大图
+      </p>
     </div>
   </section>
 
-  <!-- ============ 联系 ============ -->
-  <section class="section section--contact" id="contact">
-    <div class="grid contact">
-      <div class="contact__intro">
-        <p class="mono section__eyebrow reveal">联系 / CONTACT</p>
-        <h2 class="contact__title reveal">准备好了<br>就<em>聊聊</em></h2>
-        <p class="reveal">
-          把你的产品想法、参考图或现在卡住的地方发给我，
-          我会在一天内回复。
-        </p>
+  <!-- ============ 过程 ============ -->
+  <section class="system" id="system" data-bg="light">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow" data-reveal>作品背后 <span class="slash">/</span> THE PROCESS</p>
+        <div class="sec-head__row">
+          <h2 class="h2" data-reveal data-reveal-delay="60">四步，<br>把想法变成证据</h2>
+          <p class="sec-head__desc" data-reveal data-reveal-delay="120">
+            每个项目都走同一条链路，但每一步都按选题重新推导。
+            点击左侧步骤，看这一步到底在解决什么。
+          </p>
+        </div>
+      </header>
 
-        <ul class="contact__list">
-          <li class="reveal">
-            <span class="mono">微信 / 电话</span>
-            <a href="tel:+8615571570741">15571570741</a>
-          </li>
-          <li class="reveal">
-            <span class="mono">邮箱</span>
-            <a href="mailto:hello@example.com" data-placeholder="true">hello@example.com</a>
-            <!-- TODO: 换成你的真实邮箱（href 与文字各一处），或删掉这一整项 -->
-          </li>
-          <li class="reveal">
-            <span class="mono">所在地</span>
-            <span>湖南 · 长沙</span>
-          </li>
-        </ul>
-      </div>
+      <div class="method" data-reveal>
+        <div class="method__tabs" role="tablist" aria-label="作品的四个阶段">
+          <button class="step is-on" role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" data-panel="1">
+            <span class="step__no">01</span>
+            <span class="step__t">定位 <em>Positioning</em></span>
+            <span class="step__i" aria-hidden="true"></span>
+          </button>
+          <button class="step" role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" data-panel="2" tabindex="-1">
+            <span class="step__no">02</span>
+            <span class="step__t">推导 <em>Reasoning</em></span>
+            <span class="step__i" aria-hidden="true"></span>
+          </button>
+          <button class="step" role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" data-panel="3" tabindex="-1">
+            <span class="step__no">03</span>
+            <span class="step__t">造型 <em>Form</em></span>
+            <span class="step__i" aria-hidden="true"></span>
+          </button>
+          <button class="step" role="tab" aria-selected="false" aria-controls="panel-4" id="tab-4" data-panel="4" tabindex="-1">
+            <span class="step__no">04</span>
+            <span class="step__t">叙事 <em>Narrative</em></span>
+            <span class="step__i" aria-hidden="true"></span>
+          </button>
+        </div>
 
-      <form class="contact__form" id="contactForm" novalidate>
-        <p class="form__legend mono">留下你的需求</p>
+        <div class="method__panels">
+          <div class="panel is-on" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+            <div class="panel__body">
+              <div class="panel__head">
+                <p class="panel__k">STEP 01 / 定位</p>
+                <h3>找到你的设计主张</h3>
+              </div>
+              <p class="panel__lede">先不画图。三个问题必须先有答案：你做过什么、目标院校在做什么、你能补上哪个缺口。
+                 选题不是找一个“酷”的产品，而是找一个<b>非你不可</b>的问题。</p>
+              <ul>
+                <li>个人经历与技能盘点，建立作品集主线</li>
+                <li>院校导师方向与近三年题目拆解</li>
+                <li>3 个备选选题评估，锁定 1 个主项目</li>
+              </ul>
+            </div>
+            <figure class="panel__media">
+              <img src="assets/img/sukid/thumb-02.webp" alt="选题背景与洞察页面" width="760" height="428" loading="lazy" decoding="async">
+              <figcaption>背景与洞察 · 项目一</figcaption>
+            </figure>
+          </div>
 
-        <div class="field">
-          <label class="mono" for="f-type">合作类型</label>
-          <div class="segmented" role="radiogroup" aria-label="合作类型">
-            <label><input type="radio" name="type" value="产品设计" checked><span>产品设计</span></label>
-            <label><input type="radio" name="type" value="结构优化"><span>结构优化</span></label>
-            <label><input type="radio" name="type" value="量产跟进"><span>量产跟进</span></label>
-            <label><input type="radio" name="type" value="其他"><span>其他</span></label>
+          <div class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+            <div class="panel__body">
+              <div class="panel__head">
+                <p class="panel__k">STEP 02 / 推导</p>
+                <h3>把想法讲成证据链</h3>
+              </div>
+              <p class="panel__lede">调研不是堆数据。竞品、用户、场景、机会点，每一步都要能指向下一页的结论。
+                 导师问“为什么”的时候，你手里应该有答案。</p>
+              <ul>
+                <li>竞品横向拆解与多维评估</li>
+                <li>用户访谈、画像与需求优先级</li>
+                <li>机会点推导 → 功能与形态定义</li>
+              </ul>
+            </div>
+            <figure class="panel__media">
+              <img src="assets/img/netace/thumb-08.webp" alt="需求优先级与功能定义页面" width="760" height="428" loading="lazy" decoding="async">
+              <figcaption>需求优先级 · 项目二</figcaption>
+            </figure>
+          </div>
+
+          <div class="panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+            <div class="panel__body">
+              <div class="panel__head">
+                <p class="panel__k">STEP 03 / 造型</p>
+                <h3>从草图到可交付</h3>
+              </div>
+              <p class="panel__lede">形态推演、CMF、结构可行性，一个都不能省。作品集里的渲染图，必须经得起“它怎么开模”的追问。</p>
+              <ul>
+                <li>手绘草图与形态推演过程页</li>
+                <li>Rhino 建模规范与分面逻辑</li>
+                <li>KeyShot 渲染、场景搭建与后期</li>
+              </ul>
+            </div>
+            <figure class="panel__media">
+              <img src="assets/img/tessan/thumb-07.webp" alt="桌面能源中枢形态推演与渲染" width="760" height="428" loading="lazy" decoding="async">
+              <figcaption>形态与场景 · 项目三</figcaption>
+            </figure>
+          </div>
+
+          <div class="panel" id="panel-4" role="tabpanel" aria-labelledby="tab-4" hidden>
+            <div class="panel__body">
+              <div class="panel__head">
+                <p class="panel__k">STEP 04 / 叙事</p>
+                <h3>12 页讲完一个项目</h3>
+              </div>
+              <p class="panel__lede">版式不是装饰。字号、留白、图注、翻页节奏，都在引导导师的注意力。
+                 一页一个结论，翻完正好把项目讲完。</p>
+              <ul>
+                <li>网格系统、字号层级与图注规范</li>
+                <li>项目节奏：封面—推导—高潮—落地</li>
+                <li>四轮推敲 + 打印打样校色</li>
+              </ul>
+            </div>
+            <figure class="panel__media">
+              <img src="assets/img/sukid/thumb-05.webp" alt="作品集版式与竞品评估页面" width="760" height="428" loading="lazy" decoding="async">
+              <figcaption>版式与评估 · 项目一</figcaption>
+            </figure>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="field">
-          <label class="mono" for="f-name">称呼 <span aria-hidden="true">*</span></label>
-          <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="怎么称呼你">
+  <!-- ============ 数据 ============ -->
+  <section class="results sec--dark" id="results" data-bg="dark">
+    <div class="wrap">
+      <div class="results__head">
+        <p class="eyebrow eyebrow--lite" data-reveal>数字 <span class="slash">/</span> BY THE NUMBERS</p>
+        <h2 class="h2 h2--lite" data-reveal data-reveal-delay="60">数字不撒谎，<br>但也没那么重要。</h2>
+        <p class="results__note" data-reveal data-reveal-delay="120">
+          真正重要的是：你能不能在一次对话里，把自己的设计讲清楚。
+        </p>
+      </div>
+
+      <ul class="stats">
+        <li data-reveal style="--d:0ms">
+          <b class="count" data-to="320" data-suffix="+">0</b>
+          <span>份完整作品集</span>
+        </li>
+        <li data-reveal style="--d:80ms">
+          <b class="count" data-to="46" data-suffix="">0</b>
+          <span>所覆盖院校</span>
+        </li>
+        <li data-reveal style="--d:160ms">
+          <b class="count" data-to="38" data-suffix="">0</b>
+          <span>页平均项目篇幅</span>
+        </li>
+        <li data-reveal style="--d:240ms">
+          <b class="count" data-to="8" data-suffix="">0</b>
+          <span>年作品集教研</span>
+        </li>
+      </ul>
+
+      <div class="results__band" data-reveal>
+        <p>“导师记不住你的第 12 页，但他会记住你在第 3 页说过的那个判断。”</p>
+        <span>尖叫教研组 · 作品集批改原则</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 学员反馈 ============ -->
+  <section class="voices" id="voices" data-bg="light">
+    <div class="wrap">
+      <div class="voices__head">
+        <p class="eyebrow" data-reveal>学员反馈 <span class="slash">/</span> VOICES</p>
+        <div class="voices__ctrl" data-reveal>
+          <button class="round" id="vPrev" aria-label="上一条">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3m4.5-4.5L3 8l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="round" id="vNext" aria-label="下一条">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
+      </div>
 
-        <div class="field">
-          <label class="mono" for="f-contact">联系方式 <span aria-hidden="true">*</span></label>
-          <input id="f-contact" name="contact" type="text" required autocomplete="email" placeholder="邮箱 / 微信 / 电话">
+      <div class="slider" id="vSlider" aria-roledescription="轮播">
+        <div class="slider__track" id="vTrack">
+          <figure class="quote">
+            <blockquote>第一次有人告诉我，作品集不是把图放上去，是把<b>判断</b>放上去。改到第 4 版的时候，我才第一次觉得它像一份作品集。</blockquote>
+            <figcaption><span>L 同学</span> 2026 复试 · 目标院校：江南大学</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>导师的批注比我自己看十遍有用。他会问我“这一页想让我记住什么”，答不上来就得重做——现在我知道每一页在干嘛了。</blockquote>
+            <figcaption><span>Z 同学</span> 2025 复试 · 目标院校：湖南大学</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>把项目从头讲一遍的时候，才发现前面少了一步推导。补上之后，整份东西突然就顺了。</blockquote>
+            <figcaption><span>W 同学</span> 2025 复试 · 目标院校：广州美术学院</figcaption>
+          </figure>
         </div>
-
-        <div class="field">
-          <label class="mono" for="f-msg">需求说明 <span aria-hidden="true">*</span></label>
-          <textarea id="f-msg" name="message" rows="4" required placeholder="想做什么产品，目前进展到哪一步"></textarea>
-        </div>
-
-        <button class="btn btn--solid btn--block" type="submit">发送需求</button>
-        <p class="form__status mono" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
+        <div class="slider__dots" id="vDots" role="tablist" aria-label="选择反馈"></div>
+      </div>
     </div>
   </section>
 
 </main>
 
 <!-- ============ 页脚 ============ -->
-<footer class="site-footer">
-  <div class="grid site-footer__grid">
-    <p class="mono">© <span id="year">2026</span> 程鑫涛 · 工业设计师</p>
-    <nav class="site-footer__nav mono" aria-label="页脚导航">
-      <a href="#work">作品</a>
-      <a href="#services">能力</a>
-      <a href="#about">关于</a>
-      <a href="#contact">联系</a>
-      <a href="tel:+8615571570741">15571570741</a>
-    </nav>
+<footer class="foot" id="contact" data-bg="dark">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <a class="brand brand--foot" href="#top">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none"><rect x="3" y="11" width="3.4" height="6" rx="1.7" fill="#C6FF00"/><rect x="9.6" y="6" width="3.4" height="16" rx="1.7" fill="currentColor"/><rect x="16.2" y="9" width="3.4" height="10" rx="1.7" fill="#C6FF00"/><rect x="22.8" y="12.5" width="3.4" height="3" rx="1.5" fill="currentColor"/></svg>
+          </span>
+          <span class="brand__text"><b>尖叫</b><span>JIANO DESIGN EDU</span></span>
+        </a>
+        <p>工业设计考研复试作品集教学。<br>让每一页都在回答“为什么”。</p>
+        <div class="foot__soc">
+          <a href="#contact" aria-label="微信">微信</a>
+          <a href="#contact" aria-label="小红书">小红书</a>
+          <a href="#contact" aria-label="B 站">B 站</a>
+        </div>
+      </div>
+
+      <div class="foot__cols">
+        <div>
+          <h4>浏览</h4>
+          <a href="#works">三个项目</a>
+          <a href="#wall">作品墙</a>
+          <a href="#system">作品背后</a>
+          <a href="#results">数据</a>
+        </div>
+        <div>
+          <h4>关于</h4>
+          <a href="#intro">我们相信</a>
+          <a href="#voices">学员反馈</a>
+          <a href="mailto:hello@jiano.design">hello@jiano.design</a>
+        </div>
+        <div>
+          <h4>联系</h4>
+          <a href="mailto:hello@jiano.design">hello@jiano.design</a>
+          <a href="tel:4000000000">400‑000‑0000</a>
+          <p class="foot__addr">线下工作坊：<br>具体地点以当期通知为准</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot__bottom">
+      <p>© <span id="year">2026</span> 尖叫工业设计教育 JIANO DESIGN EDU · 保留所有权利</p>
+      <p class="foot__font">字体 MiSans © 小米科技 / 回退 PingFang SC · 部分作品已做脱敏处理</p>
+      <a class="totop" href="#top" aria-label="回到顶部">回到顶部 <span aria-hidden="true">↑</span></a>
+    </div>
   </div>
 </footer>
 
-<div class="page-progress" aria-hidden="true"><span id="pageProgress"></span></div>
+<!-- ============ 作品浏览器 ============ -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
+  <div class="lb__bar">
+    <div class="lb__id">
+      <p class="lb__no" id="lbNo">01</p>
+      <div>
+        <h2 id="lbTitle">作品</h2>
+        <p id="lbSub">项目</p>
+      </div>
+    </div>
+    <div class="lb__count"><b id="lbCur">1</b><span>/</span><i id="lbTotal">13</i></div>
+    <button class="lb__x" id="lbClose" aria-label="关闭">
+      <span></span><span></span>
+    </button>
+  </div>
 
-<!-- 移动端联系浮层 -->
-<div class="contact-panel" id="contactPanel" hidden>
-  <div class="contact-panel__inner">
-    <button class="contact-panel__close mono" type="button" data-contact-close>关闭 (esc)</button>
-    <p class="mono contact-panel__eyebrow">联系 / CONTACT</p>
-    <h2 class="contact-panel__title">准备好了就<em>聊聊</em></h2>
-    <ul class="contact-panel__list">
-      <li><span class="mono">微信 / 电话</span><a href="tel:+8615571570741">15571570741</a></li>
-      <li><span class="mono">邮箱</span><a href="mailto:hello@example.com">hello@example.com</a></li>
-    </ul>
-    <a class="btn btn--solid btn--block" href="#contact" data-contact-close>填写需求表单</a>
+  <div class="lb__stage" id="lbStage">
+    <button class="lb__nav lb__nav--prev" id="lbPrev" aria-label="上一页">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-7-7 7 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <figure class="lb__fig">
+      <img id="lbImg" alt="">
+      <div class="lb__load" id="lbLoad" aria-hidden="true"></div>
+    </figure>
+    <button class="lb__nav lb__nav--next" id="lbNext" aria-label="下一页">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-7 7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="lb__foot">
+    <div class="lb__thumbs" id="lbThumbs"></div>
+    <div class="lb__prog"><i id="lbProg"></i></div>
+    <p class="lb__hint">← → 翻页 · Esc 关闭 · 可左右拖动</p>
   </div>
 </div>
 
-<script src="script.js"></script>
-<script src="micro-slats.js"></script>
+<div class="cursor" id="cursor" aria-hidden="true">
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring"><i class="cursor__label"></i></span>
+</div>
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-label="撕开票据进入网站">
+  <canvas class="gate__canvas" id="gateCanvas" aria-hidden="true"></canvas>
+  <div class="gate__inner">
+    <p class="gate__hint"><span class="gate__dot" aria-hidden="true"></span>撕开右侧票据 · 开始观看</p>
+
+    <div class="ticket" id="gateTicket">
+      <div class="tk-body" data-ticket-body>
+        <div class="tk-top">
+          <span class="tk-brand">尖叫 <em>JIANO</em></span>
+          <span class="tk-no">NO. 000026</span>
+        </div>
+        <div class="tk-mid">
+          <p class="tk-k">2026 作品集展</p>
+          <p class="tk-t">ADMIT<br>ONE</p>
+        </div>
+        <div class="tk-bot">
+          <span>工业设计 · 复试作品集</span>
+          <span class="tk-hint">撕开右侧 →</span>
+        </div>
+      </div>
+      <div class="tk-stub" data-ticket-stub>
+        <span class="tk-stubT">撕开入场<em>TEAR TO ENTER</em></span>
+      </div>
+    </div>
+
+    <button class="gate__skip" id="gateSkip" type="button">跳过 · 直接进入</button>
+  </div>
+</div>
+
+<script>
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  window.setTimeout(function () {
+    if (!window.__JIANO_READY) document.documentElement.classList.remove('js');
+  }, 2600);
+</script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/drift-wall.js"></script>
+<script src="assets/js/masonry.js"></script>
+<script src="assets/js/tear-ticket.js"></script>
+<script src="assets/js/site.js" defer></script>
 </body>
 </html>

@@ -1,365 +1,174 @@
-# 程鑫涛 · 工业设计师 — 个人作品集
+# 尖叫工业设计教育 · 作品展示官网
 
-一个纯静态单页作品集，视觉风格参照 [grilledpixels.com](https://www.grilledpixels.com/ecommerce) 的设计语言重建：
-纯黑底、大号流体字阶、等宽体标签、自定义缓动曲线、12 列栅格、整屏强调色版块。
+工业设计考研复试作品集的**作品展示**站点。参考 Squarespace 的板块架构与编辑排版语言；
+主色调为 **白 / 灰 / 黑 / 荧光绿**，前段深色、后段黑白交替。
 
-首页有 3 个真实项目，每个项目点进去是独立详情页，图片以**环形轮播**呈现。
+纯静态：**双击 `index.html` 即可查看**，不需要构建、不需要服务器。
+（站点用了三个 React Bits 组件的原生移植：DriftWall / Masonry / TearTicket，均无 React 依赖。）
 
-两个 React Bits 组件已移植为无依赖原生实现：
-
-| 组件 | 用途 | 移植说明 |
-|---|---|---|
-| `<MicroSlats />` | 首屏动态色带 | React + `ogl` → 原生 WebGL2 |
-| `<CircularCarousel />` | 作品图片环形轮播 | React → 原生 DOM + CSS 3D |
-
-**无构建步骤、无依赖、无框架。** 双击 `index.html` 就能打开。
-
-![移动端首屏](preview-mobile.png)
+> 全站没有课程、班期、报名、招生内容，只做作品展示。
 
 ---
 
-## 文件结构
+## 1. 开场：黑屏粒子 → 撕票入场
 
-```
-portfolio/
-├── index.html               首页：作品卡片、能力、关于、联系
-├── work-01.html             「蒜乐扒」儿童手摇剥蒜器
-├── work-02.html             NetAce 网球智能陪练机器人
-├── work-03.html             TESSAN 桌面多功能插座
-├── styles.css               全站样式（设计令牌集中在 :root）
-├── script.js                预加载、滚动揭示、导航、表单、图片灯箱
-├── micro-slats.js           首屏色带（原生 WebGL2）
-├── circular-carousel.js     环形轮播（原生 DOM + CSS 3D）
-├── circular-carousel.css    环形轮播样式
-├── work-carousel.js         详情页接入：把图集变成环形轮播
-├── images/                  17 张作品图（WebP，共约 1.2 MB）
-├── preview-mobile.png       移动端效果预览
-├── README.md                本文件
-└── tools/                   开发期脚本（部署时可整目录删掉）
-    ├── cdp.py               极简 CDP 客户端（仅标准库）
-    ├── deploy.mjs           通过 GitHub API 部署
-    ├── optimize_works.py    原始作品图 → WebP
-    ├── smoke.py             首页交互自检：26 项
-    ├── verify_slats.py      色带自检：渲染 / 动画 / 交互
-    ├── verify_carousel.py   轮播自检：四个 preset / 点击 / 溢出
-    ├── verify_work_pages.py 三个详情页自检
-    └── shot.py              按指定视口截图
-```
+进入页面先看到一块干净的黑色屏幕，缓慢漂移的粒子在背景里连成细线；
+约 0.6 秒后，一张**黑灰纸质的观影票**在画面正中升起。
 
-`tools/` 里的脚本只在本地开发时用，部署时不必上传。
-它们需要有 Edge 浏览器；Python 用工作区自带的那份即可。
+- **撕开**：按住票据右侧存根向右拖 ≈70px，纸纤维被拉断、桥丝回缩、存根脱落，
+  之后遮罩淡出、锁定解除，才开始浏览网页内容。
+- **跳过**：票下方的「跳过 · 直接进入」按钮，或按 `Esc`。
+- **键盘**：Tab 到存根，`Enter` / `Space` 直接撕开。
+- 票面：`ADMIT ONE`、`2026 作品集展`、`NO. 000026`、竖排「撕开入场 / TEAR TO ENTER」。
+- 纸纹来自 `assets/img/paper-grain.webp`（420px 可平铺），用 `soft-light` 叠在黑灰底色上。
 
-```powershell
-$base = "file:///C:/你的路径/portfolio/"
+实现：
 
-# 首页交互自检（导航、浮层、表单、横向溢出、锚点等 26 项）
-python tools/smoke.py "$($base)index.html" 1440 900
-python tools/smoke.py "$($base)index.html" 390 844
+| 文件 | 作用 |
+| --- | --- |
+| `assets/js/tear-ticket.js` | TearTicket 原生移植：撕口几何、桥丝拉伸/回缩、拖拽角度、掉落物理、3D 倾斜 |
+| `assets/css/tear-ticket.css` | 票面样式（clip-path 撕口、纤维、存根） |
+| `site.js` 第 6.1 节 | 遮罩开关、粒子画布、票据参数 |
 
-# 色带自检（着色器报错、实际像素、动画推进、指针交互）
-python tools/verify_slats.py "$($base)index.html" 1440 900
-
-# 三个详情页的环形轮播自检
-python tools/verify_work_pages.py $base 1440 900
-
-# 截图核对版式；末尾加 motion 保留动画
-python tools/shot.py "$($base)work-01.html" 1440 1500 shot.png motion
-```
-
----
-
-## 还需要你确认的 3 处
-
-| # | 位置 | 现在的内容 | 说明 |
-|---|---|---|---|
-| 1 | `index.html` 联系版块 + 联系浮层 | `hello@example.com` | **必改**：换成你的真实邮箱，或删掉这一整项。搜索 `data-placeholder` 可定位 |
-| 2 | `index.html` 首屏数据带 | 8 年 / 40+ / 12 / 100% | 我按行业常见值填的，**不是你说的数字**，请改成真实的 |
-| 3 | `index.html` 关于版块 | 工具：SolidWorks · Rhino · KeyShot | 我按工业设计常见工具填的，请改成你实际用的 |
-
-已经填好的：所在地 **湖南 · 长沙**、电话/微信 **15571570741**、3 个作品及其全部图集。
-
-### 新增作品
-
-**首页加卡片**：复制 `index.html` 里任意一段 `<article class="project reveal">` 改文案即可，
-`href` 指向新的详情页。
-
-**加详情页**：复制一个现成的 `work-0N.html`，改标题、参数栏和 `<ul class="gallery-source">`
-里的图片数据即可。图片放 `images/`，然后用压缩脚本批量转 WebP：
-
-```powershell
-# 把 D:\mj\作品图 的原始 PNG 压成网页用 WebP（改脚本顶部的 SRC 路径）
-python tools/optimize_works.py
-```
-
-详情页的图片列表是数据驱动的，每一项长这样：
-
-```html
-<li data-src="images/work-01-cover.webp"
-    data-alt="给读屏软件的图片描述"
-    data-title="主视觉" data-subtitle="副标题"></li>
-```
-
----
-
-## 改配色
-
-所有颜色都在 `styles.css` 顶部的 `:root` 里，改一处全局生效：
+票据尺寸 **600×320**（存根 190），在 `.ticket` 里定义：
 
 ```css
-:root{
-  --black:#000000;      /* 背景 */
-  --white:#ffffff;      /* 正文 */
-  --accent:#5B5BFF;     /* 电光蓝紫：标题强调、按钮、整屏版块 */
-  --accent-soft:#8f8fff;/* 小标签用的浅一档蓝紫 */
-}
+.ticket { width: min(600px, calc(100vw - 48px)); }
 ```
 
-改成红色 `#EE344A` 就是参考站原本的配色。想试纯蓝灰可以把 `--accent` 设为 `#2E7BFF`。
-
-改完 `--accent`，**首屏色带会跟着一起变** —— 它默认从 `--accent` / `--black` / `--white` 读色。
+> 早期版本把票据放在首屏右侧，因为容器宽度为 0 导致票据整体偏右；现在由 `.ticket`
+> 给出确定宽度，票据始终水平居中（1440 宽视口下 x = 420，中心正好 720）。
 
 ---
 
-## 首屏动态色带（MicroSlats）
+## 2. 页面结构与明暗节奏
 
-来自 React Bits 的 `<MicroSlats />`。原版是 React + `ogl`；
-本项目是**零构建的静态站**，所以把实现逐行移植成了无依赖的原生 WebGL2：
+| # | 板块 | 背景 | 内容 |
+| --- | --- | --- | --- |
+| 0 | 开场遮罩 | 黑 + 粒子 | 观影票，撕开后才可浏览 |
+| 1 | 固定导航 | 透明 | 作品 / 调研 / 单页 / 作品墙 / 过程 + 联系 |
+| 2 | 首屏 | **黑** + DriftWall | 主张、双 CTA、3 个数据 |
+| 3 | 院校带 | 黑 | 学员覆盖院校 |
+| 4 | 主张 | 黑 | 大字号陈述 + 数字 |
+| 5 | 作品 | **白** | 3 个完整项目，可分类筛选 |
+| 6 | 调研资料 | **黑** | 8 张调研页（竞品雷达 / 画像 / KANO / 旅程…） |
+| 7 | 作品集单页 | **白** | 93 张单页，React Bits Masonry |
+| 8 | 作品墙 | **黑** | 38 页缩略图，两行反向滚动 |
+| 9 | 作品背后 | 白 | 四步推导，标签切换 |
+| 10 | 数据 | 黑 | 4 组数字 |
+| 11 | 学员反馈 | 白 | 3 条引文轮播 |
+| 12 | 页脚 | 黑 | 浏览 / 关于 / 联系 |
 
-| 原始实现 | 本项目的等价物 |
-|---|---|
-| React `useRef` / `useMemo` / `useEffect` | 闭包与工厂函数 |
-| `ogl` 的 `Renderer` / `Program` / `Mesh` / `Triangle` / `RenderTarget` / `Texture` | `micro-slats.js` 里的 `microGL` 极简封装 |
-| GLSL 着色器、preset 数值、流体物理参数 | **逐字保留，未做任何改动** |
-
-移植后行为与原版一致：4 个 preset、波浪参数、指针搅动流体、点击溅射、
-`intro` 展开动画、`prefers-reduced-motion` 降级。
-
-### 调参数
-
-参数写在 `index.html` 的容器属性上，改完刷新即可：
-
-```html
-<div class="hero__field"
-     data-micro-slats
-     data-slats-preset="swell"        <!-- swell | tide | storm | signal -->
-     data-slats-color="#5B5BFF"       <!-- 留空则跟随 --accent -->
-     data-slats-background="transparent"
-     data-slats-width="9"             <!-- 单条色带宽度（CSS px） -->
-     data-slats-height="26"
-     data-slats-gap="3"
-     data-slats-roundness="0.85"      <!-- 0 方形，1 全圆角胶囊 -->
-     data-slats-speed="0.6"           <!-- 0 冻住海浪，指针仍能搅动 -->
-     data-slats-scale="1.6"           <!-- 越大波浪越长越平缓 -->
-     data-slats-chop="0.5"            <!-- 波峰更尖、波谷更平 -->
-     data-slats-perspective="0.72"    <!-- 0 是平墙，越大越向地平线后退 -->
-     data-slats-fog="0.5"
-     data-slats-cursor-strength="1.1"
-     data-slats-cursor-size="46"      <!-- 指针搅动的半径 -->
-     data-slats-swirl="0.18"          <!-- 涡旋强度 -->
-     data-slats-trail="1.6"           <!-- 痕迹残留秒数 -->
-     data-slats-lean="0.5"            <!-- 色带随水流的倾斜 -->
-     data-slats-glint-strength="0.8">
-</div>
-```
-
-属性名与 React 版的 prop 一一对应，只是把驼峰换成连字符：
-`cursorStrength` → `data-slats-cursor-strength`，`glint` → `data-slats-glint-strength`。
-
-色带的高度在 `styles.css` 里调：
-
-```css
-.hero__field{ height:clamp(13rem,17vw,20rem); }
-```
-
-### 用代码控制
-
-```js
-const slats = document.querySelector('[data-micro-slats]').__microSlats;
-slats.set({ color:'#EE344A', speed:1.2 });   // 等价于 React 侧改 props
-slats.destroy();                             // 销毁并释放 WebGL 资源
-```
-
-也可以不用自动初始化，直接调工厂函数：
-
-```js
-const slats = MicroSlats.create(document.querySelector('#myBox'), {
-  preset: 'storm', color: '#5B5BFF', slatWidth: 8, interactive: true,
-});
-```
-
-### 性能
-
-- 渲染分辨率有像素预算上限（`PIXEL_BUDGET`），高分屏不会硬拉满 DPR
-- 只有可见（`IntersectionObserver`）且需要更新时才跑 `requestAnimationFrame`
-- 切到后台标签页自动停帧
-- 手机窄屏自动收细色带（`max-width:700px`）
-
-### 兼容性
-
-需要 WebGL2，不支持时会直接跳过并露出 CSS 静态渐变兜底（不会报错、不会白屏）。
-指针的流体搅动还需要浮点渲染目标扩展（`EXT_color_buffer_float`）；
-没有该扩展时海浪照常，只是少了指针搅动。
+导航会跟随当前区块自动换色（`data-bg="dark|light"`），见 `site.js` 第 3.5 节。
 
 ---
 
-## 作品图片环形轮播（CircularCarousel）
+## 3. 三个移植的组件
 
-来自 React Bits 的 `<CircularCarousel />`。原版是 React，本项目移植为**无依赖的原生实现**：
+### DriftWall（首屏背景）
 
-| 原始实现 | 本项目的等价物 |
-|---|---|
-| `useState` / `useRef` / `useMemo` / `useLayoutEffect` | 实例字段、闭包与显式的 setup / teardown |
-| JSX 卡片与贴片渲染 | 原生 DOM 构建 |
-| 组件 CSS | **逐字保留**，类名 `circular-carousel__*` 与变量 `--cc-*` 未改动 |
+3D 漂移作品墙，5 列（平板 4 / 手机 3），鼠标视差 + 悬停抬升 + 点击进大图，离屏自动暂停。
 
-环的几何计算（`TILES` 分片、`radius`/`curve` 插值、弹簧阻尼、拖拽惯性、视差）
-与上游一致，四个 preset 都可用。
+### Masonry（作品集单页）
 
-### 交互方式
+- 93 张按真实宽高排布（`data.js` 里的 `more.dims`），自动列宽 240px，每 9 页一张双列宽图。
+- 滚动进入时从下方弹入（弹簧 + 位移 + 模糊转清晰），悬停放大，点击打开自带灯箱
+  （从缩略图位置放大飞入，`← →` 翻页，`Esc` 关闭）。
+- 这一版关闭了拖拽重排（作品页顺序没有意义），需要时可给 `createMasonry` 传 `draggable: true`。
 
-- **自动旋转**：默认 `drift` 缓慢自转，鼠标悬停时停住
-- **拖动/抛掷**：按住拖动，松手有惯性并吸附到最近一张
-- **点击卡片**：把那张转到正面
-- **键盘**：左右方向键切换，`Home`/`End` 跳到首尾
-- **看大图**：点下方按钮打开灯箱，`←` `→` 切换，`Esc` 关闭
-- **缩略图**：底部缩略图点击可快速跳转
-- **触屏**：横向拖动，纵向滚动不受影响（`touch-action` 已处理）
-- **降低动效**：系统开启 `prefers-reduced-motion` 时自动停转
+### TearTicket（开场票据）
 
-### 调参数
+见第 1 节。
 
-改 `work-carousel.js` 里的这一段：
-
-```js
-CircularCarousel.create(stageHost, {
-  preset: 'cylinder',     // cylinder | orbit | wheel | panorama
-  intro: 'rise',          // assemble | rise | spin | none
-  cardWidth: 300,         // 卡片宽度（px）
-  aspectRatio: 16 / 10,   // 宽 / 高，图片按此裁切
-  gap: 26,                // 卡片间距
-  speed: 11,              // 自转速度（度/秒）
-  autoplay: 'drift',      // drift | step | off
-  depthFade: 0.62,        // 背面淡出强度
-  cornerRadius: 12,       // 卡片圆角
-  captions: true,         // 是否显示下方说明
-  ...
-});
-```
-
-也可以在详情页的容器上覆盖：
-
-```html
-<div class="carousel-host" data-carousel data-preset="orbit" data-card-width="260">
-```
-
-轮播区的高度在 `circular-carousel.css` 里调：
-
-```css
-.carousel-stage{ height:clamp(32rem,46vw,50rem); }
-```
-
-### 用代码控制
-
-```js
-const c = window.__workCarousel;   // 详情页的轮播实例
-c.focusIndex(3);                   // 把第 4 张转到正面
-c.stepBy(1);                       // 前进一张
-c.set({ speed: 20 });              // 改参数
-c.debug();                         // 当前状态快照
-c.destroy();
-```
-
-想自己从头建一个：
-
-```js
-const c = CircularCarousel.create(document.querySelector('#myBox'), {
-  items: [{ src: 'a.jpg', alt: '描述', title: '标题', subtitle: '副标题' }],
-  preset: 'orbit', cardWidth: 260, captions: true,
-});
-```
-
-> 注意：组件会撑满父元素，所以父元素**必须有确定的高度**，
-> 否则环没有空间、什么都看不到。
-
-### 性能
-
-- 图片懒加载，只有可视区内的轮播才跑动画（`IntersectionObserver`）
-- 切到后台标签页自动停帧
-- 环只在容器尺寸变化时重新测量（`ResizeObserver`）
-- 卡片上限 64 张（防止误传几百张把环压成一个点）；预加载上限 16 张
+三个组件的 CSS/JS 都独立成文件，互不依赖，也没有引入 React、motion、hugeicons。
 
 ---
 
-## 联系方式表单
+## 4. 票据化的视觉细节
 
-表单目前**不发送到任何服务器** —— 纯静态页面没有后端。当前行为：
+为了让其他板块和这张票呼应，做了这些统一处理：
 
-1. 校验称呼、联系方式、需求说明三项必填；
-2. 通过后把内容整理成一段文本并**复制到剪贴板**，提示用户发到微信。
-
-想让它直接发邮件，给 `<form>` 加一个属性即可，`script.js` 已经支持：
-
-```html
-<form class="contact__form" id="contactForm" data-mailto="你的邮箱@example.com" novalidate>
-```
-
-想用专业表单服务（推荐，能收附件、有后台记录）：注册 [Formspree](https://formspree.io) 之类的服务，
-把 `action` 指向它，并删掉 `script.js` 里第 8 段表单逻辑。
+- **撕口线**：作品卡与调研卡在图片与标题之间加了虚线 + 两端缺口（`::before/::after`
+  用区块底色画圆），像票根撕口。
+- **编号**：作品编号显示为 `NO.01`。
+- **等宽字**：所有编号、`PAGE 041`、按钮辅助文字都用等宽字体 + 字距。
+- **虚线与缺口**统一用 `var(--line-strong)` 与区块底色。
 
 ---
 
-## 本地预览
+## 5. 配色
 
-直接双击 `index.html` 即可。
+| 变量 | 值 | 用途 |
+| --- | --- | --- |
+| `--paper` | `#ffffff` | 浅色区块 |
+| `--paper-warm` | `#f2f2f0` | 作品 / 单页 / 反馈区 |
+| `--dark` | `#070709` | 深色区块 |
+| `--ink` | `#0b0b0c` | 文字、浅色区按钮 |
+| `--line` / `--line-strong` | `#e4e4e0` / `#cbcbc6` | 浅色区分隔线 |
+| `--accent` | `#c6ff00` | 荧光绿，只做点缀 |
 
-想用本地服务器（避免个别浏览器对 `file://` 的限制）：
+深色区块统一用 `.sec--dark`：只翻转文字与分隔线变量，不翻转 `--ink`。
+荧光绿在浅色底上不做文字色，只做块与线；深色底上才是自由色。
 
-```powershell
-cd portfolio
-python -m http.server 8080
-# 然后打开 http://localhost:8080
+---
+
+## 6. 目录结构
+
+```
+jiano-edu/
+├── index.html
+├── assets/
+│   ├── css/  site.css · drift-wall.css · masonry.css · tear-ticket.css
+│   ├── js/   data.js · drift-wall.js · masonry.js · tear-ticket.js · site.js
+│   └── img/
+│       ├── sukid/ netace/ tessan/   3 个完整项目（full / thumb / mini 三档）
+│       ├── singles/                 93 张单页（full 1400px / thumb 680px）
+│       └── paper-grain.webp         票据纸纹
+└── README.md
 ```
 
 ---
 
-## 部署到 GitHub Pages
+## 7. 字体
 
-你有 `afsanaakther4889-code/Portfolio` 这个空仓库，可以直接用：
-
-```powershell
-cd <你的工作区>\portfolio
-git init
-git add .
-git commit -m "个人作品集"
-git branch -M main
-git remote add origin https://github.com/afsanaakther4889-code/Portfolio.git
-git push -u origin main
+```
+"MiSans" → "PingFang SC" → 鸿蒙/思源黑体 → 系统黑体
 ```
 
-然后到仓库 **Settings → Pages**：
-
-- Source 选 `Deploy from a branch`
-- Branch 选 `main`，目录选 `/ (root)`
-- 保存，等一分钟
-
-访问地址：`https://afsanaakther4889-code.github.io/Portfolio/`
-
-> 注意：仓库名是 `Portfolio`（大写），GitHub Pages 的路径大小写敏感，用上面这个地址。
+MiSans 走 jsDelivr 的 `misans@4.1.0`（unicode-range 分包），三档字重。
+离线打开会回退本机字体。页脚的「字体 MiSans © 小米科技」声明请保留。
 
 ---
 
-## 无障碍与兼容
+## 8. 新增 / 替换作品
 
-已经处理好的部分：
+**完整项目**：图片放 `assets/img/<代号>/`，`data.js` 加一项，
+再在 `index.html` 作品区复制一个 `<article class="work">`。
 
-- 语义化标签、`<main>` 地标、跳转到主内容的 skip link
-- 表单 `<label>` 关联、`aria-invalid`、`role="status"` 实时提示
-- 联系浮层支持 `Esc` 关闭、关闭后焦点回到触发按钮
-- 导航按钮有 `aria-expanded` 状态
-- 尊重 `prefers-reduced-motion`：关闭动效时自动跳过预加载与滚动动画
-- 有打印样式，打印时隐藏导航与浮层、强制深色字
-- 断点：320 / 390 / 700 / 1024 / 1200 / 1400，栅格 2 → 6 → 12 列
+**单页**：图片放 `assets/img/singles/`，把 `data.js` 里 `more.count` 与 `more.dims`
+改成实际数量/尺寸，Masonry 与灯箱会自动同步。
 
-已知取舍：字体使用系统字族（等宽体 + 无衬线体），不加载外部字体，
-所以首屏没有字体下载等待，但不同操作系统的字形会有差异。
-想统一字形可以自托管字体，在 `styles.css` 的 `--sans` / `--mono` 里替换。
+> `more` 带 `wall: false`，不会进入首屏漂移墙和作品墙。
+
+---
+
+## 9. 上线前需要替换的内容
+
+- **数据**：8 年、46 所院校、320+ 作品集、38 页篇幅 —— 示例，请核对。
+- **学员反馈**、**院校名单** —— 示例，请替换并取得授权。
+- **联系方式**：`400-000-0000`、`hello@jiano.design`、微信 `JIANO-DESIGN`。
+- **备案号**：页脚未写，商用请补 ICP 备案。
+- **作品授权**：所有作品图上线前确认学员授权与脱敏范围。
+- **开场遮罩**：如果希望老访客不再看到，可在 `sessionStorage` 里记一个标记再跳过。
+
+---
+
+## 10. 交互清单
+
+`1` 开场遮罩（粒子 / 撕票 / 跳过 / Esc）`2` 自定义光标 `3` 滚动显现
+`4` 固定导航（明暗跟随 / 下滑隐藏 / 进度条）`5` 首屏 DriftWall `6` 磁吸按钮
+`7` 作品卡聚光与撕口 `8` 数字滚动 `9` 分类筛选（FLIP）`10` 作品浏览器
+`11` 调研卡片跳转 `12` Masonry 单页（弹簧 + 灯箱）`13` 作品墙 `14` 四阶段标签
+`15` 反馈轮播 `16` 锚点同步
+
+全部动效遵守 `prefers-reduced-motion`：粒子静止、遮罩不做位移、票据点击即开。
