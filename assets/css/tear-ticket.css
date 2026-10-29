@@ -93,8 +93,8 @@
     radial-gradient(140% 125% at 50% -14%,
       rgba(255, 255, 255, .62) 0%,
       rgba(255, 255, 255, 0) 42%,
-      rgba(120, 100, 70, .07) 82%,
-      rgba(120, 100, 70, .13) 100%);
+      rgba(96, 96, 90, .07) 82%,
+      rgba(96, 96, 90, .15) 100%);
   background-size: 186px auto, 520px auto, 100% 100%;
   background-blend-mode: soft-light, multiply, normal;
   pointer-events: auto;
