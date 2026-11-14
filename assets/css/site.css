@@ -1382,3 +1382,10 @@ html.js .hero__title .ln > span {
 @media (max-width: 620px) {
   .awards__list { grid-template-columns: 1fr; }
 }
+/* ---------- 结构调整补丁 ---------- */
+/* 品牌全称「尖叫工业设计教育」比原来长，收一点字号和字距 */
+.brand__text b { font-size: 14px; letter-spacing: .02em; white-space: nowrap; }
+.brand--foot .brand__text b { font-size: clamp(15px, 1.35vw, 19px); letter-spacing: .01em; }
+
+/* 调研（黑）后面紧跟作品墙（黑），给墙一点色差和分界线 */
+.wall { background: #0b0b0f; border-top: 1px solid rgba(255, 255, 255, .07); }
