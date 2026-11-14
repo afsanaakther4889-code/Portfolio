@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    尖叫工业设计教育 · JIANO
    设计语言：Squarespace 式编辑排版 —— 白底、超大标题、细分隔线、
    胶囊按钮、全幅作品区、克制的强调色。
@@ -674,6 +674,15 @@ html.gate-pending .gate { display: grid; }
   opacity: 0; transition: opacity .5s;
   mix-blend-mode: soft-light;
 }
+/* 悬停时交叉淡入到另一页：一张卡片看到两个画面 */
+.work__media .work__img--alt {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity .7s var(--ease), transform 1.6s var(--ease-out);
+}
+.work:hover .work__media .work__img--alt { opacity: 1; transform: scale(1.02); }
+
 .work:hover .work__media { box-shadow: 0 30px 60px -30px rgba(11,11,12,.4); }
 .work:hover .work__media img { transform: scale(1.05); }
 .work:hover .work__glow { opacity: 1; }

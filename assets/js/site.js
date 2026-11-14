@@ -748,7 +748,7 @@
         img: MORE.base + 'thumb-' + pad(mi + 1) + '.webp',
         width: dm[0],
         height: dm[1],
-        title: 'PAGE ' + pad(mi + 1),
+        title: (MORE.titles && MORE.titles[mi]) ? MORE.titles[mi] : 'PAGE ' + pad(mi + 1),
         // 每 9 页放一张双列宽图，墙面才有节奏
         span: mi % 9 === 0 ? 2 : 1
       });
@@ -768,7 +768,7 @@
       hoverEffect: 'zoom',
       focusOnHover: false,
       captions: 'hover',
-      parallax: 0,
+      parallax: 0.05,
       lightbox: true,
       cursorLabel: '看大图'
     });
