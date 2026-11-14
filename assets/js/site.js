@@ -503,7 +503,8 @@
     // 第一件真实作品占据整行（只有一件结果时也占整行）
     works.forEach(function (w) { w.classList.remove('work--wide'); });
     var reals = shown.filter(function (w) { return !w.classList.contains('work--slot'); });
-    if (reals.length === 1 || (filter === 'all' && shown.length > 2)) {
+    // 只有一个结果时才占整行（31 个项目的常态是三列网格）
+    if (reals.length === 1) {
       reals[0].classList.add('work--wide');
     }
 

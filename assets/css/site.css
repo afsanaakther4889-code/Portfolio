@@ -651,7 +651,7 @@ html.gate-pending .gate { display: grid; }
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: clamp(18px, 2.4vw, 40px) var(--gut);
 }
-.work { grid-column: span 6; position: relative; }
+.work { grid-column: span 4; position: relative; }
 .work--wide { grid-column: span 12; }
 .work.is-off { display: none; }
 
@@ -1260,6 +1260,10 @@ html.js .hero__title .ln > span {
   .foot__font { margin-inline: 0; }
 }
 
+@media (max-width: 1180px) and (min-width: 761px) {
+  .work, .work--wide { grid-column: span 6; }
+}
+
 @media (max-width: 760px) {
   :root { --pad: 20px; }
   body { font-size: 15px; }
@@ -1340,4 +1344,41 @@ html.js .hero__title .ln > span {
 @media (hover: none), (pointer: coarse) {
   .cursor { display: none; }
   .stack__card figcaption { opacity: 1; transform: none; }
+}
+
+/* ---------- 奖项 ---------- */
+.awards { padding-block: var(--sec); border-top: 1px solid rgba(255, 255, 255, .1); }
+.awards__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(24px, 3.4vw, 56px);
+  margin-top: clamp(30px, 3.6vw, 54px);
+  border-top: 1px solid var(--line-strong);
+}
+.award {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+  padding: 15px 0 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(12.5px, 1.02vw, 14.5px);
+  color: var(--mute);
+  transition: color .35s var(--ease), padding-left .35s var(--ease), border-color .35s;
+}
+.award span { min-width: 0; }
+.award b {
+  flex: none;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: .04em; color: var(--accent);
+}
+.award:hover { color: #fff; padding-left: 8px; border-color: var(--accent); }
+.awards__nil { color: var(--mute-2); }
+.awards__note {
+  margin-top: clamp(20px, 2vw, 30px);
+  font-size: 11.5px; letter-spacing: .06em; color: var(--mute-2);
+}
+
+@media (max-width: 980px) {
+  .awards__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .awards__list { grid-template-columns: 1fr; }
 }
