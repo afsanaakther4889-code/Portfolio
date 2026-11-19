@@ -1389,3 +1389,16 @@ html.js .hero__title .ln > span {
 
 /* 调研（黑）后面紧跟作品墙（黑），给墙一点色差和分界线 */
 .wall { background: #0b0b0f; border-top: 1px solid rgba(255, 255, 255, .07); }
+/* 调研区密排（整包 78 页） */
+.research__grid--dense {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(10px, 1.1vw, 16px) clamp(10px, 1vw, 15px);
+}
+.res--bare .res__t { display: none; }
+.research__grid--dense .res__no { font-size: 8.5px; padding: 2px 5px; top: 7px; left: 7px; }
+@media (max-width: 1100px) {
+  .research__grid--dense { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .research__grid--dense { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

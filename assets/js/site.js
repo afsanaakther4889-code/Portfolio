@@ -700,40 +700,42 @@
 
   /* ---------- 11.5 作品墙 ---------- */
   var wallRail = $('#wallRail');
-  if (wallRail && window.JIANO_WORKS) {
-    var pages = [];
-    Object.keys(window.JIANO_WORKS).forEach(function (id) {
-      var w = window.JIANO_WORKS[id];
-      if (w.wall === false) return;
-      for (var i = 0; i < w.count; i++) pages.push({ id: id, i: i });
-    });
+  var WALL = window.JIANO_WORKS && window.JIANO_WORKS.wall;
+  if (wallRail && WALL) {
+    var ROWS = 3;
+    var idxAll = [];
+    for (var wi = 0; wi < WALL.count; wi++) idxAll.push(wi);
+    var per = Math.ceil(idxAll.length / ROWS);
 
-    var half = Math.ceil(pages.length / 2);
-    var rowsData = [pages.slice(0, half), pages.slice(half)];
-
-    rowsData.forEach(function (list, r) {
-      var track = wallRail.querySelector('[data-wall-row="' + r + '"]');
-      if (!track) return;
+    for (var rr = 0; rr < ROWS; rr++) {
+      var track = wallRail.querySelector('[data-wall-row="' + rr + '"]');
+      if (!track) continue;
+      var list = idxAll.slice(rr * per, (rr + 1) * per);
       for (var copy = 0; copy < 2; copy++) {
-        list.forEach(function (item) {
-          var w = window.JIANO_WORKS[item.id];
+        list.forEach(function (idx) {
+          var m = WALL.map && WALL.map[idx];
           var b = document.createElement('button');
           b.type = 'button';
           b.className = 'wall__item';
-          b.setAttribute('data-cursor', '看这一页');
-          b.setAttribute('aria-label', w.title + ' 第 ' + (item.i + 1) + ' 页');
           var im = document.createElement('img');
-          im.src = w.base + 'mini-' + pad(item.i + 1) + '.webp';
+          im.src = WALL.base + 'w-' + pad(idx + 1) + '.webp';
           im.alt = '';
-          im.width = 480; im.height = 270;
+          im.width = 640; im.height = 360;
           im.loading = 'lazy';
           im.decoding = 'async';
           b.appendChild(im);
-          b.addEventListener('click', function () { openLightbox(item.id, item.i); });
+          if (m) {
+            b.setAttribute('data-cursor', '看这一页');
+            b.setAttribute('aria-label', '查看过程页面');
+            b.addEventListener('click', function () { openLightbox(m.id, m.page - 1); });
+          } else {
+            b.tabIndex = -1;
+            b.style.cursor = 'default';
+          }
           track.appendChild(b);
         });
       }
-    });
+    }
   }
 
   /* ---------- 11.6 单页作品（React Bits Masonry 原生移植） ---------- */
