@@ -653,7 +653,11 @@
   }
 
   $$('[data-open]').forEach(function (btn) {
-    btn.addEventListener('click', function () { openLightbox(btn.getAttribute('data-open')); });
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-open');
+      if (window.JIANO_BOOK) window.JIANO_BOOK.open(id);
+      else openLightbox(id);
+    });
   });
 
   // 调研资料：直接跳到对应项目的那一页
