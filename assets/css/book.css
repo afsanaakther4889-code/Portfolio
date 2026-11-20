@@ -75,7 +75,7 @@ body.book-open { overflow: hidden; }
 .book__body {
   position: relative;
   width: min(1440px, 95vw, calc((100vh - 190px) * 3.5));
-  aspect-ratio: 3.52 / 1;
+  aspect-ratio: 3.52 / 1;   /* 打开后会按实际图片比例覆盖 */
   transform: rotateX(6deg) scale(.965);
   transform-style: preserve-3d;
   border-radius: 4px;
@@ -90,25 +90,25 @@ body.book-open { overflow: hidden; }
 /* 页面 */
 .book__page {
   position: absolute; top: 0; width: 50%; height: 100%;
-  overflow: hidden; background: #f3f2ec;
+  overflow: hidden; background: #101013;
   backface-visibility: hidden;
 }
 .book__page--l { left: 0; border-radius: 3px 0 0 3px; }
 .book__page--r { left: 50%; border-radius: 0 3px 3px 0; }
 .book__page img {
-  position: absolute; left: 2.8%; top: 2.8%; width: 94.4%; height: 94.4%;
-  object-fit: contain; background: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .18);
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain;
 }
 
 /* 中间书脊阴影 */
 .book__gutter {
-  position: absolute; left: 50%; top: 0; width: 88px; height: 100%;
+  position: absolute; left: 50%; top: 0; width: 190px; height: 100%;
   transform: translateX(-50%);
   background: linear-gradient(90deg,
-    rgba(0, 0, 0, .22) 0%, rgba(0, 0, 0, .04) 34%,
+    rgba(0, 0, 0, .16) 0%, rgba(0, 0, 0, .07) 18%, rgba(0, 0, 0, .015) 38%,
     rgba(0, 0, 0, 0) 50%,
-    rgba(0, 0, 0, .04) 66%, rgba(0, 0, 0, .22) 100%);
+    rgba(0, 0, 0, .015) 62%, rgba(0, 0, 0, .07) 82%, rgba(0, 0, 0, .16) 100%);
+  filter: blur(5px);
   pointer-events: none; z-index: 5;
 }
 
@@ -125,13 +125,13 @@ body.book-open { overflow: hidden; }
 
 .book__face {
   position: absolute; inset: 0; overflow: hidden;
-  background: #f3f2ec; backface-visibility: hidden;
+  background: #101013; backface-visibility: hidden;
 }
 .book__face--front { border-radius: 0 3px 3px 0; }
 .book__face--back { transform: rotateY(180deg); border-radius: 3px 0 0 3px; }
 .book__face img {
-  position: absolute; left: 2.8%; top: 2.8%; width: 94.4%; height: 94.4%;
-  object-fit: contain; background: #fff;
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain;
 }
 .book__flip::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -195,17 +195,7 @@ body.book-open { overflow: hidden; }
   .book__pip.is-on { width: 22px; }
   .book__pips { gap: 5px; }
 }
-/* 书页堆叠的厚度感 */
-.book__body::before,
-.book__body::after {
-  content: ""; position: absolute; top: 1.4%; height: 97.2%; width: 5px;
-  border-radius: 2px;
-  background: repeating-linear-gradient(90deg,
-    #efece4 0 1px, #cdc9be 1px 2.4px, #e6e2d8 2.4px 3.4px);
-  opacity: .9;
-}
-.book__body::before { left: -5px; }
-.book__body::after { right: -5px; }
+/* 页面直接铺满，不再画纸堆边 */
 
 /* 单页模式（手机） */
 .book.is-single .book__page--l { display: none; }

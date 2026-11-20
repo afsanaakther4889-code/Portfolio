@@ -50,12 +50,23 @@
     }
   }
 
+  function fitBody() {
+    if (!body || SINGLE || !work) return;
+    var w1 = imgL.naturalWidth, h1 = imgL.naturalHeight;
+    if (!w1 || !h1) return;
+    var w2 = imgR.getAttribute('src') ? imgR.naturalWidth : 0;
+    var h2 = imgR.getAttribute('src') ? imgR.naturalHeight : 0;
+    if (w2 && h2) body.style.aspectRatio = (w1 + w2) + ' / ' + Math.max(h1, h2);
+    else body.style.aspectRatio = (w1 * 2) + ' / ' + h1;
+  }
+
   function paint() {
     var n = total();
     if (SINGLE) {
       imgR.src = pageSrc(cur);
       imgR.style.visibility = 'visible';
       imgL.style.visibility = 'hidden';
+      if (imgR.naturalWidth) body.style.aspectRatio = imgR.naturalWidth + ' / ' + imgR.naturalHeight;
       curEl.textContent = pad(cur + 1);
       prevBtn.disabled = cur === 0;
       nextBtn.disabled = cur >= n - 1;
@@ -262,6 +273,12 @@
     nextBtn = $('bookNext');
     closeBtn = $('bookClose');
     if (!body) return;
+    imgL.addEventListener('load', fitBody);
+    imgR.addEventListener('load', function () {
+      if (SINGLE && imgR.naturalWidth) body.style.aspectRatio = imgR.naturalWidth + ' / ' + imgR.naturalHeight;
+      else fitBody();
+    });
+    imgR.addEventListener('load', fitBody);
     bind();
   }
 
