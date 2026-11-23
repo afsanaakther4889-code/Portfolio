@@ -1023,14 +1023,14 @@ html.gate-pending .gate { display: grid; }
 }
 .foot__soc a:hover { background: #fff; color: var(--ink); border-color: #fff; }
 
-.foot__cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr) minmax(0, 1.35fr) 200px; gap: clamp(16px, 2.2vw, 34px); }
+.foot__cols { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, .85fr) minmax(0, 1.5fr) 200px; gap: clamp(16px, 2.2vw, 34px); }
 .foot__cols h4 {
   font-size: 10.5px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
   color: rgba(255,255,255,.38); margin-bottom: 16px;
 }
 .foot__cols a {
   display: block; font-size: 13px; color: rgba(255,255,255,.68); padding: 5px 0;
-  white-space: nowrap;
+  overflow-wrap: break-word;
   transition: color .3s, transform .3s var(--ease);
 }
 .foot__cols a:hover { color: var(--accent); transform: translateX(3px); }
