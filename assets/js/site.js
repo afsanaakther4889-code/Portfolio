@@ -359,12 +359,19 @@
     if (!gate || gate.classList.contains('is-out')) return;
     gate.classList.add('is-out');
     gate.style.display = 'grid';
+
+    var beam = document.getElementById('gateBeam');
+    if (beam) {
+      beam.classList.add('is-on');
+      window.setTimeout(function () { beam.classList.remove('is-on'); }, 1300);
+    }
+
     document.documentElement.classList.remove('gate-pending');
     if (particles && particles.stop) particles.stop();
     window.setTimeout(function () {
       gate.style.display = 'none';
       gate.setAttribute('aria-hidden', 'true');
-    }, 900);
+    }, 1250);
   }
 
   if (gate && gateCanvas) {
