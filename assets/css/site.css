@@ -437,10 +437,12 @@ html.gate-pending, html.gate-pending body { overflow: hidden; }
   place-items: center;
   background: #060608;
   color: #fff;
-  transition: opacity .7s var(--ease);
+  transform-origin: 50% 46%;
+  transition: opacity .8s var(--ease), transform 1.15s var(--ease-out), filter .8s var(--ease);
+  will-change: opacity, transform;
 }
 html.gate-pending .gate { display: grid; }
-.gate.is-out { opacity: 0; pointer-events: none; }
+.gate.is-out { opacity: 0; transform: scale(1.06); filter: blur(7px); pointer-events: none; }
 
 /* 白色手指：从左往右缓慢滑过存根并淡出，示意撕开方向 */
 .gate__hand {
@@ -1419,4 +1421,13 @@ html.js .hero__title .ln > span {
 }
 @media (min-width: 761px) {
   .foot__qr { transform: translateX(20px); }
+}
+/* ---------- 撕票后的进场：首屏动画等遮罩退场再播 ---------- */
+html.gate-pending .hero__eyebrow,
+html.gate-pending .hero__lead,
+html.gate-pending .hero__act,
+html.gate-pending .hero__meta,
+html.gate-pending .hero__title .ln > span,
+html.gate-pending .hero__title .u path {
+  animation-play-state: paused;
 }

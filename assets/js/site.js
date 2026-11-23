@@ -364,7 +364,7 @@
     window.setTimeout(function () {
       gate.style.display = 'none';
       gate.setAttribute('aria-hidden', 'true');
-    }, 820);
+    }, 900);
   }
 
   if (gate && gateCanvas) {
